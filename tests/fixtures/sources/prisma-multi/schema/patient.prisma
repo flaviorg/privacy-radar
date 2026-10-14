@@ -1,0 +1,4 @@
+model Patient {
+  id    String @id
+  email String @unique
+}

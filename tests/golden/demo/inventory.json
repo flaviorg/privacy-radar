@@ -1,0 +1,947 @@
+{
+  "schemaVersion": 1,
+  "entities": [
+    {
+      "name": "Appointment",
+      "kind": "model",
+      "locations": [
+        {
+          "file": "prisma/schema.prisma",
+          "line": 22,
+          "column": 7,
+          "sourceKind": "prisma"
+        },
+        {
+          "file": "migrations/001_init.sql",
+          "line": 27,
+          "column": 14,
+          "sourceKind": "sql"
+        }
+      ],
+      "flags": {
+        "hasSensitive": false,
+        "hasChildrenIndicator": false,
+        "retentionSignal": null,
+        "protectionHints": []
+      },
+      "fields": [
+        {
+          "name": "id",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 23,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 28,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [],
+          "sensitivity": "not-personal",
+          "confidence": 0,
+          "level": "low",
+          "status": "unclassified",
+          "sinks": []
+        },
+        {
+          "name": "patientId",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 24,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 29,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [],
+          "sensitivity": "not-personal",
+          "confidence": 0,
+          "level": "low",
+          "status": "unclassified",
+          "sinks": []
+        },
+        {
+          "name": "scheduledAt",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 25,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 30,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [],
+          "sensitivity": "not-personal",
+          "confidence": 0,
+          "level": "low",
+          "status": "unclassified",
+          "sinks": []
+        },
+        {
+          "name": "reminderPhone",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 26,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 31,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "contact.phone"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.5,
+          "level": "medium",
+          "status": "personal",
+          "sinks": []
+        },
+        {
+          "name": "extra",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 27,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 32,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [],
+          "sensitivity": "not-personal",
+          "confidence": 0,
+          "level": "low",
+          "status": "ambiguous",
+          "sinks": [],
+          "llmLabel": {
+            "label": "unknown",
+            "confidence": 0.3,
+            "scripted": true,
+            "rationale": "No neighbouring field suggests a category."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Clinic",
+      "kind": "model",
+      "locations": [
+        {
+          "file": "prisma/schema.prisma",
+          "line": 32,
+          "column": 7,
+          "sourceKind": "prisma"
+        },
+        {
+          "file": "migrations/001_init.sql",
+          "line": 3,
+          "column": 14,
+          "sourceKind": "sql"
+        }
+      ],
+      "flags": {
+        "hasSensitive": false,
+        "hasChildrenIndicator": false,
+        "retentionSignal": null,
+        "protectionHints": []
+      },
+      "fields": [
+        {
+          "name": "cnpj",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 33,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 4,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "identifier.cnpj"
+          ],
+          "sensitivity": "not-personal",
+          "confidence": 0.3,
+          "level": "low",
+          "status": "not-personal",
+          "sinks": []
+        },
+        {
+          "name": "name",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 34,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 5,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "name.full-name"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.3,
+          "level": "low",
+          "status": "below-threshold",
+          "sinks": []
+        },
+        {
+          "name": "address",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 35,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 6,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "contact.address"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.3,
+          "level": "low",
+          "status": "below-threshold",
+          "sinks": []
+        }
+      ]
+    },
+    {
+      "name": "Patient",
+      "kind": "model",
+      "locations": [
+        {
+          "file": "prisma/schema.prisma",
+          "line": 3,
+          "column": 7,
+          "sourceKind": "prisma"
+        },
+        {
+          "file": "migrations/001_init.sql",
+          "line": 9,
+          "column": 14,
+          "sourceKind": "sql"
+        }
+      ],
+      "flags": {
+        "hasSensitive": true,
+        "hasChildrenIndicator": true,
+        "retentionSignal": null,
+        "protectionHints": []
+      },
+      "fields": [
+        {
+          "name": "id",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 4,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 10,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [],
+          "sensitivity": "not-personal",
+          "confidence": 0,
+          "level": "low",
+          "status": "unclassified",
+          "sinks": []
+        },
+        {
+          "name": "fullName",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 5,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 11,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "name.full-name"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "file",
+              "callee": "fs.appendFileSync",
+              "file": "src/billing.ts",
+              "line": 8
+            },
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "cpf",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 6,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 12,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "identifier.cpf"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.65,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "analytics",
+              "callee": "mixpanel.track",
+              "vendor": "Mixpanel",
+              "file": "src/analytics.ts",
+              "line": 9
+            },
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "nifPt",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 7,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 13,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "identifier.nif-pt"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "url-query",
+              "callee": "<query>",
+              "file": "src/appointments.ts",
+              "line": 11
+            },
+            {
+              "kind": "http",
+              "callee": "fetch",
+              "file": "src/appointments.ts",
+              "line": 11
+            },
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "dniEs",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 8,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 14,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "identifier.dni-es"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "codiceFiscale",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 9,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 15,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "identifier.codice-fiscale-it"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "email",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 10,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 16,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "contact.email"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "phone",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 11,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 17,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "contact.phone"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "birthDate",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 12,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 18,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "demographic.birth-date"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.75,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "guardianName",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 13,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 19,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "children.guardian"
+          ],
+          "sensitivity": "children-indicator",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "diagnosis",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 14,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 20,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "special.health"
+          ],
+          "sensitivity": "sensitive",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        },
+        {
+          "name": "allergies",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 15,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 21,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "special.health"
+          ],
+          "sensitivity": "sensitive",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": []
+        },
+        {
+          "name": "bloodType",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 16,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 22,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "special.health"
+          ],
+          "sensitivity": "sensitive",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": []
+        },
+        {
+          "name": "obs",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 17,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 23,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [],
+          "sensitivity": "not-personal",
+          "confidence": 0,
+          "level": "low",
+          "status": "ambiguous",
+          "sinks": [],
+          "llmLabel": {
+            "label": "special.health",
+            "confidence": 0.62,
+            "scripted": true,
+            "rationale": "Free-form clinical observations next to diagnosis and allergies."
+          }
+        },
+        {
+          "name": "createdAt",
+          "locations": [
+            {
+              "file": "prisma/schema.prisma",
+              "line": 18,
+              "column": 3,
+              "sourceKind": "prisma"
+            },
+            {
+              "file": "migrations/001_init.sql",
+              "line": 24,
+              "column": 3,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [],
+          "sensitivity": "not-personal",
+          "confidence": 0,
+          "level": "low",
+          "status": "unclassified",
+          "sinks": []
+        },
+        {
+          "name": "mother_name",
+          "locations": [
+            {
+              "file": "migrations/001_init.sql",
+              "line": 37,
+              "column": 33,
+              "sourceKind": "sql"
+            }
+          ],
+          "categories": [
+            "name.mother-name"
+          ],
+          "sensitivity": "personal",
+          "confidence": 0.6,
+          "level": "medium",
+          "status": "personal",
+          "sinks": [
+            {
+              "kind": "log",
+              "callee": "console.info",
+              "file": "src/patients.ts",
+              "line": 14
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "hosts": [
+    {
+      "host": "api.mixpanel.com",
+      "vendor": "Mixpanel",
+      "hqCountry": "US"
+    },
+    {
+      "host": "sms.example-vendor.invalid",
+      "vendor": null,
+      "hqCountry": null
+    }
+  ],
+  "valueHits": [
+    {
+      "file": "migrations/001_init.sql",
+      "line": 40,
+      "categories": [
+        "identifier.cnpj"
+      ],
+      "checksum": "valid",
+      "masked": "**.***.***/****-58"
+    },
+    {
+      "file": "migrations/001_init.sql",
+      "line": 43,
+      "categories": [
+        "identifier.cpf"
+      ],
+      "checksum": "valid",
+      "masked": "***.***.***-56"
+    },
+    {
+      "file": "migrations/001_init.sql",
+      "line": 43,
+      "categories": [
+        "identifier.codice-fiscale-it"
+      ],
+      "checksum": "valid",
+      "masked": "**************1G"
+    },
+    {
+      "file": "migrations/001_init.sql",
+      "line": 44,
+      "categories": [
+        "identifier.nif-pt"
+      ],
+      "checksum": "valid",
+      "masked": "*******18"
+    },
+    {
+      "file": "migrations/001_init.sql",
+      "line": 44,
+      "categories": [
+        "identifier.dni-es"
+      ],
+      "checksum": "valid",
+      "masked": "*******5X"
+    },
+    {
+      "file": "migrations/001_init.sql",
+      "line": 45,
+      "categories": [
+        "identifier.nif-pt"
+      ],
+      "checksum": "valid",
+      "masked": "*******72"
+    },
+    {
+      "file": "migrations/001_init.sql",
+      "line": 45,
+      "categories": [
+        "identifier.nie-es"
+      ],
+      "checksum": "valid",
+      "masked": "*******2Q"
+    },
+    {
+      "file": "src/server.ts",
+      "line": 13,
+      "categories": [
+        "identifier.cpf"
+      ],
+      "checksum": "valid",
+      "masked": "***.***.***-97"
+    },
+    {
+      "file": "src/server.ts",
+      "line": 14,
+      "categories": [
+        "contact.email"
+      ],
+      "checksum": "n/a",
+      "masked": "*****.******@*******.invalid"
+    },
+    {
+      "file": "src/server.ts",
+      "line": 16,
+      "categories": [
+        "financial.iban"
+      ],
+      "checksum": "valid",
+      "masked": "**** **** **** **** **** ***9 2"
+    },
+    {
+      "file": "src/server.ts",
+      "line": 17,
+      "categories": [
+        "identifier.steuer-id-de"
+      ],
+      "checksum": "valid",
+      "masked": "*********65"
+    },
+    {
+      "file": "src/server.ts",
+      "line": 18,
+      "categories": [
+        "identifier.bsn-nl"
+      ],
+      "checksum": "valid",
+      "masked": "*******82"
+    },
+    {
+      "file": "src/server.ts",
+      "line": 22,
+      "categories": [
+        "identifier.cpf"
+      ],
+      "checksum": "valid",
+      "masked": "***.***.***-64"
+    },
+    {
+      "file": "src/server.ts",
+      "line": 23,
+      "categories": [
+        "contact.email"
+      ],
+      "checksum": "n/a",
+      "masked": "******.*********@*******.invalid"
+    },
+    {
+      "file": "src/server.ts",
+      "line": 24,
+      "categories": [
+        "identifier.nir-fr"
+      ],
+      "checksum": "valid",
+      "masked": "* ** ** ** *** *** 82"
+    },
+    {
+      "file": "src/server.ts",
+      "line": 25,
+      "categories": [
+        "financial.card-pan"
+      ],
+      "checksum": "valid",
+      "masked": "**** **** **** **07"
+    }
+  ],
+  "counts": {
+    "entities": 3,
+    "fields": 24,
+    "personal": 14,
+    "sensitive": 3,
+    "childrenIndicators": 2,
+    "notPersonal": 1,
+    "belowThreshold": 2,
+    "ambiguous": 2,
+    "unclassified": 5,
+    "valuesMasked": 16
+  }
+}

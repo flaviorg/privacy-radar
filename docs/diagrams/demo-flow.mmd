@@ -1,0 +1,20 @@
+sequenceDiagram
+  participant U as npm run demo
+  participant C as CLI (scan, report, pr)
+  participant S as sources + flows
+  participant E as engine (deterministic)
+  participant L as LLM provider (fake)
+  participant O as output
+  U->>C: pr --base HEAD~1 --head HEAD --repo <tmp two-commit copy> (deterministic only)
+  C-->>U: 2 introduced, 1 removed, exit code 1 for the PR check
+  U->>C: scan fixtures/telehealth-clinic --regime both --format json,sarif,md --docs all --report-lang pt-BR
+  C->>S: parse 8 files (TS, SQL, Prisma)
+  S-->>E: field candidates, value hits, sink reaches
+  E->>E: rules, severity matrix, confidence, suppressions
+  E->>L: labelAmbiguousField for 2 ambiguous fields (obs, extra)
+  L-->>E: labels with evidence substring and confidence
+  E->>E: mergeFindings(deterministic, labels): superset guaranteed
+  E->>L: draftNarrative(facts) for 8 sections of 4 documents
+  L-->>E: prose sections (Zod-validated, numbers and articles from facts)
+  E->>O: findings.json, findings.sarif, inventory.md, ropa.md, dpia.md, registro.pt-BR.md, ripd.pt-BR.md
+  O-->>U: summary + "drafts, not legal advice" banner, exit code 1 (errors found)

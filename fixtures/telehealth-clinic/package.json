@@ -1,0 +1,7 @@
+{
+  "name": "telehealth-clinic",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Demo fixture for privacy-radar: a tiny telehealth clinic. Scanned, never installed or run. Every value is synthetic.",
+  "type": "module"
+}

@@ -1,0 +1,26 @@
+{"id": "amb-01", "entity": "Patient", "field": "obs", "declarationText": "obs Json?", "comment": null, "entityFields": ["id", "fullName", "diagnosis", "allergies", "obs"], "expected": "special.health"}
+{"id": "amb-02", "entity": "Appointment", "field": "extra", "declarationText": "extra Json?", "comment": null, "entityFields": ["id", "patientId", "scheduledAt", "extra"], "expected": "unknown"}
+{"id": "amb-03", "entity": "Customer", "field": "metadata", "declarationText": "metadata Json", "comment": "shipping address of the buyer", "entityFields": ["id", "email", "metadata"], "expected": "contact.address"}
+{"id": "amb-04", "entity": "Order", "field": "notes", "declarationText": "notes String", "comment": "free text typed by the support agent", "entityFields": ["id", "total", "notes"], "expected": "unknown"}
+{"id": "amb-05", "entity": "Product", "field": "details", "declarationText": "details Json", "comment": null, "entityFields": ["id", "sku", "price", "details"], "expected": "not-personal"}
+{"id": "amb-06", "entity": "Employee", "field": "info", "declarationText": "info Json", "comment": "religion declared in the HR survey", "entityFields": ["id", "fullName", "info"], "expected": "special.religious"}
+{"id": "amb-07", "entity": "Student", "field": "data", "declarationText": "data Json", "comment": "school name and grade level", "entityFields": ["id", "fullName", "data"], "expected": "children.school"}
+{"id": "amb-08", "entity": "Device", "field": "payload", "declarationText": "payload Json", "comment": "last known GPS position", "entityFields": ["id", "model", "payload"], "expected": "online.geolocation"}
+{"id": "amb-09", "entity": "Invoice", "field": "misc", "declarationText": "misc String", "comment": "bank account for the refund", "entityFields": ["id", "total", "misc"], "expected": "financial.bank-account"}
+{"id": "amb-10", "entity": "Server", "field": "attributes", "declarationText": "attributes Json", "comment": null, "entityFields": ["id", "hostname", "region", "attributes"], "expected": "not-personal"}
+{"id": "amb-11", "entity": "Paciente", "field": "observacoes", "declarationText": "observacoes String", "comment": "anotações clínicas da consulta", "entityFields": ["id", "nome", "cpf", "observacoes"], "expected": "special.health"}
+{"id": "amb-12", "entity": "Cliente", "field": "dados", "declarationText": "dados Json", "comment": "endereço de entrega", "entityFields": ["id", "email", "dados"], "expected": "contact.address"}
+{"id": "amb-13", "entity": "Pedido", "field": "detalhes", "declarationText": "detalhes Json", "comment": null, "entityFields": ["id", "valor", "detalhes"], "expected": "not-personal"}
+{"id": "amb-14", "entity": "Usuario", "field": "descricao", "declarationText": "descricao String", "comment": "biografia escrita pelo usuário", "entityFields": ["id", "email", "descricao"], "expected": "unknown"}
+{"id": "amb-15", "entity": "Member", "field": "properties", "declarationText": "properties Json", "comment": "date of birth used for age checks", "entityFields": ["id", "email", "properties"], "expected": "demographic.birth-date"}
+{"id": "amb-16", "entity": "Visitor", "field": "meta", "declarationText": "meta Json", "comment": "browser cookie identifier", "entityFields": ["id", "firstSeen", "meta"], "expected": "online.cookie-id"}
+{"id": "amb-17", "entity": "Lead", "field": "custom", "declarationText": "custom Json", "comment": "phone number captured by the landing page", "entityFields": ["id", "source", "custom"], "expected": "contact.phone"}
+{"id": "amb-18", "entity": "Ticket", "field": "comments", "declarationText": "comments String", "comment": null, "entityFields": ["id", "subject", "status", "comments"], "expected": "unknown"}
+{"id": "amb-19", "entity": "Setting", "field": "value", "declarationText": "value String", "comment": null, "entityFields": ["id", "key", "value"], "expected": "not-personal"}
+{"id": "amb-20", "entity": "Applicant", "field": "other", "declarationText": "other Json", "comment": "criminal record check result", "entityFields": ["id", "fullName", "other"], "expected": "criminal.criminal"}
+{"id": "amb-21", "entity": "Donor", "field": "extras", "declarationText": "extras Json", "comment": "genetic markers of the sample", "entityFields": ["id", "fullName", "extras"], "expected": "special.genetic"}
+{"id": "amb-22", "entity": "Voter", "field": "json", "declarationText": "json Json", "comment": "party affiliation", "entityFields": ["id", "fullName", "json"], "expected": "special.political"}
+{"id": "amb-23", "entity": "Photo", "field": "blob", "declarationText": "blob Bytes", "comment": "face template used for login", "entityFields": ["id", "userId", "blob"], "expected": "special.biometric"}
+{"id": "amb-24", "entity": "Shipment", "field": "description", "declarationText": "description String", "comment": null, "entityFields": ["id", "weight", "description"], "expected": "not-personal"}
+{"id": "amb-25", "entity": "Account", "field": "outros", "declarationText": "outros Json", "comment": "salário mensal informado", "entityFields": ["id", "email", "outros"], "expected": "financial.salary"}
+{"id": "amb-26", "entity": "Child", "field": "note", "declarationText": "note String", "comment": "guardian contact for pickup", "entityFields": ["id", "fullName", "note"], "expected": "children.guardian"}

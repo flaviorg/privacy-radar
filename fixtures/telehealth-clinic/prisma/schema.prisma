@@ -1,0 +1,38 @@
+/// Synthetic telehealth clinic schema (fixture; every value is synthetic).
+
+model Patient {
+  id            String   @id @default(cuid())
+  fullName      String
+  cpf           String?  @unique
+  nifPt         String?
+  dniEs         String?
+  codiceFiscale String?
+  email         String   @unique
+  phone         String
+  birthDate     DateTime @db.Date
+  guardianName  String?
+  diagnosis     String
+  allergies     String
+  bloodType     String
+  obs           Json?
+  createdAt     DateTime @default(now())
+  @@map("patients")
+}
+
+model Appointment {
+  id            String   @id @default(cuid())
+  patientId     String
+  scheduledAt   DateTime
+  reminderPhone String
+  extra         Json?
+
+  @@map("appointments")
+}
+
+model Clinic {
+  cnpj    String @id
+  name    String
+  address String
+
+  @@map("clinics")
+}

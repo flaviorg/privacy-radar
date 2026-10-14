@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "scenario": "telehealth-clinic",
+  "description": "Scripted answers for the demo fixture. The author wrote the two labels after looking at the two ambiguous fields, and the eight narrative sections from the deterministic facts of each section (numerals only, numbers from the facts, citations from the section's list). dpia.description simulates one invalid-JSON answer followed by a valid repair.",
+  "promptHashes": {
+    "label-field.v1": "sha256:f579d6040c1b73d4bf0f5d81a499212861a288baf8dde2741fcc89f09893aa33",
+    "draft-narrative.v1": "sha256:9345516b24d1efd9481e4a5ab320c70f3afd57cf9cb7a1626560b310fc63fc6e"
+  },
+  "turns": [
+    {
+      "id": "classify-patient-obs",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Patient",
+        "field": "obs"
+      },
+      "output": {
+        "label": "special.health",
+        "confidence": 0.62,
+        "evidence": "obs Json?",
+        "rationale": "Free-form clinical observations next to diagnosis and allergies."
+      }
+    },
+    {
+      "id": "classify-appointment-extra",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Appointment",
+        "field": "extra"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.3,
+        "evidence": "extra Json?",
+        "rationale": "No neighbouring field suggests a category."
+      }
+    },
+    {
+      "id": "narrate-ropa-purposes",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "ropa",
+        "section": "purposes"
+      },
+      "output": {
+        "paragraphs": [
+          "The scan found 3 entities with 24 fields; the controller has not declared the purposes of the processing in the configuration, so each purpose must be described before this record is used (art. 30(1)).",
+          "Every processing of the 3 entities needs a legal basis under art. 6 of the GDPR and art. 7 of the LGPD; the configuration declares none yet."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "narrate-ropa-security-measures",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "ropa",
+        "section": "security-measures"
+      },
+      "output": {
+        "paragraphs": [
+          "The scan reports 5 errors and 10 warnings; the security findings show personal data in logs, in a local file, in a URL query string and in hard-coded seed values (arts. 5(1)(f) and 32).",
+          "Art. 46 of the LGPD asks for security measures able to protect the 3 entities that hold personal data; the table below lists each finding with its location."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "narrate-dpia-description",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "dpia",
+        "section": "description"
+      },
+      "simulate": {
+        "kind": "invalid-json",
+        "then": "ok"
+      },
+      "output": {
+        "paragraphs": [
+          "The application stores health data of patients, which is sensitive personal data (art. 5 II, art. 11 and art. 4(15)); 3 of the 24 fields hold it.",
+          "Personal data leaves the application towards 1 known analytics vendor in the US and towards 1 unknown host; this description follows art. 35(7)."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "narrate-dpia-necessity-proportionality",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "dpia",
+        "section": "necessity-proportionality"
+      },
+      "output": {
+        "paragraphs": [
+          "The data minimisation principle (art. 5(1)(c) of the GDPR and art. 6 III of the LGPD) asks whether each of the 24 fields is needed for the declared purposes.",
+          "The configuration declares no purposes and no retention period, so necessity and proportionality cannot be assessed yet; the 2 notes and 10 warnings of the scan point to the fields to review first (art. 35(7))."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "narrate-dpia-measures",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "dpia",
+        "section": "measures"
+      },
+      "output": {
+        "paragraphs": [
+          "The scan reports 5 errors, 10 warnings and 2 notes; the measures below follow the rules that fired, from encrypting the 3 sensitive fields to removing personal data from logs (arts. 25 and 32).",
+          "The data protection officer reviews each measure and records it in this assessment (art. 35(7)); LGPD art. 46 sets the matching security duty."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "narrate-registro-finalidades",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "registro",
+        "section": "finalidades"
+      },
+      "output": {
+        "paragraphs": [
+          "O controlador ainda não declarou as finalidades do tratamento na configuração; as 3 entidades e os 24 campos encontrados precisam de uma finalidade legítima, específica e explícita (art. 6 I).",
+          "Cada finalidade precisa de uma base legal do art. 7 antes que este registro seja usado."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "narrate-registro-seguranca",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "registro",
+        "section": "seguranca"
+      },
+      "output": {
+        "paragraphs": [
+          "A varredura encontrou 5 erros e 10 avisos; dados pessoais aparecem em logs, em um arquivo local, na query string de uma URL e em valores fixos no código (art. 6 VII).",
+          "O art. 46 pede medidas de segurança aptas a proteger os dados das 3 entidades; a tabela abaixo indica cada achado com o seu local."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "narrate-ripd-medidas-salvaguardas",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "ripd",
+        "section": "medidas-salvaguardas"
+      },
+      "output": {
+        "paragraphs": [
+          "As medidas abaixo seguem as regras que dispararam na varredura: 5 erros, 10 avisos e 2 notas, com os 3 campos sensíveis em texto puro como prioridade (art. 38, parágrafo único).",
+          "As salvaguardas devem ser validadas pelo encarregado e complementadas com os itens que a configuração não declara, conforme o art. 46."
+        ],
+        "citedFindingIds": []
+      }
+    }
+  ]
+}

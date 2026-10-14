@@ -1,0 +1,68 @@
+/// Synthetic telehealth clinic schema (fixture; every value is synthetic).
+
+model Patient {
+  id            String   @id @default(cuid())
+  fullName      String
+  cpf           String?  @unique
+  nifPt         String?
+  dniEs         String?
+  codiceFiscale String?
+  email         String   @unique
+  phone         String
+  birthDate     DateTime @db.Date
+  guardianName  String?
+  diagnosis     String
+  allergies     String
+  bloodType     String
+  obs           Json?
+  createdAt     DateTime @default(now())
+  @@map("patients")
+}
+
+model Appointment {
+  id            String   @id @default(cuid())
+  patientId     String
+  scheduledAt   DateTime
+  reminderPhone String
+  extra         Json?
+
+  @@map("appointments")
+}
+
+model Clinic {
+  cnpj    String @id
+  name    String
+  address String
+
+  @@map("clinics")
+}
+
+// Blocks below exist only in the test copy (the demo schema stops above).
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PATIENT
+  CLINICIAN
+}
+
+/// A note written by a clinician.
+model ClinicalNote {
+  id        String   @id @default(cuid())
+  /// Free-text body; may hold health data.
+  /// Second doc line.
+  body      String   @db.Text
+  author    String   @default("Ana Example") @map("author_name")
+  tags      String[]
+  escaped   String   @default("say \"hi\"")
+  patientId String
+  patient   Patient  @relation(fields: [patientId], references: [id])
+
+  @@index([patientId])
+}

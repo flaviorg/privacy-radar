@@ -1,0 +1,40 @@
+# Threat model
+
+This is not legal advice and not a complete assessment. The table lists the fourteen risks privacy-radar was designed against, the mitigation in the code and the test that proves it. The tool reads untrusted repositories and sends text to an optional model, so most risks are about what leaves the process and what a model could influence.
+
+| # | Risk | Mitigation | Test |
+|---|---|---|---|
+| 1 | Prompt injection from scanned code suppresses or downgrades findings | Guardrails 1-4: `mergeFindings` superset, untrusted blocks, evidence substring, closed enums | `tests/unit/merge-findings.unit.test.ts` (property), `tests/e2e/injection.e2e.test.ts` |
+| 2 | The tool leaks the personal data it finds into SARIF (uploaded to GitHub), PR comments or documents | Guardrail 5: masking at the detector plus binding-aware masking from the source adapters, conservative masking of unparsed `INSERT` rows, masked snippets, no raw values in trace | `tests/unit/mask.unit.test.ts`, `tests/unit/values.unit.test.ts`, `tests/e2e/no-leak.e2e.test.ts` (identifiers, e-mails, names, address) |
+| 3 | Stale or wrong legal references presented as fact | Catalog with `verifiedOn`, `sourceUrl`, `verifiedAgainst`; golden snapshot; freshness warning; "verify" wording; disclaimer | `tests/unit/catalog.unit.test.ts`, `tests/unit/conventions.unit.test.ts` (disclaimer), `catalog:freshness` |
+| 4 | Overclaiming flow detection | One-hop model documented with negative tests (`two-hops.ts`, `cross-function.ts` produce no finding) | `tests/unit/reach.unit.test.ts` negatives, README limits |
+| 5 | False positives on `name`, `address`, `email` in non-person entities or test code | Entity-context and test-path demotion, `--min-confidence`, `belowThreshold` kept in JSON | `tests/unit/classify-field.unit.test.ts`, `tests/unit/confidence.unit.test.ts` |
+| 6 | API key or `.env` leaks through logs, errors, trace or fixtures | `redactSecrets` everywhere, `check:secrets`, key-shaped values built at run time | `tests/unit/redact.unit.test.ts`, `tests/unit/openai-compatible.unit.test.ts`, `check:secrets` in CI |
+| 7 | Tests or demo reach the network | Guard on `fetch`, `net`, `dns`, `http(s)`; injected `fetch` in the client | `tests/unit/no-network.unit.test.ts` canaries, `tests/e2e/demo.e2e.test.ts` under the guard |
+| 8 | A malicious repository crashes the scanner (huge files, pathological regex input, deep nesting) | File and entity caps; bounded regexes (a static lint rejects nested quantifiers and unbounded lookaheads over the same class, plus a generous 500 ms budget on a 100 kB adversarial string); iterative walker with a depth cap of 300; Babel's own `RangeError` at about 450 caught as `DEPTH_LIMIT` | `tests/unit/values.unit.test.ts` (regex shape lint and budget), `tests/unit/ts-parse.unit.test.ts` (deep nesting fixture gives one `DEPTH_LIMIT` warning, no throw), `tests/unit/fuzz-sources.unit.test.ts` |
+| 9 | Fake provider hides real-provider failures | Same Zod schemas for fake and real; `providerSchema` strips keywords some backends reject; client tested with injected `fetch` returning malformed JSON, refusal text, truncated output, 429, 500, timeout; optional `tests/live` and `eval:live` | `tests/unit/openai-compatible.unit.test.ts`, `tests/unit/call-llm.unit.test.ts`, `tests/live/real-provider.live.ts` |
+| 10 | SARIF rejected by GitHub (missing fingerprint, absolute URI, zero column, too many results) or alerts pointing to files that do not exist (URI relative to a sub-folder) | Builder invariants, Zod subset, cap, `uriPrefix` from the Git root, self-action job in CI | `tests/unit/sarif.unit.test.ts` (sub-folder case), CI `self-action` |
+| 11 | Script injection through Action inputs or Git refs (`${{ inputs.x }}` in `run:`; a ref such as `--output=<file>`) | Inputs only through `env:`; refs validated with `git rev-parse --verify --end-of-options`, leading `-` rejected before any Git call | `tests/e2e/git.e2e.test.ts` (refs `-x`, `--output=/tmp/x`, `HEAD~1`), `tests/unit/conventions.unit.test.ts` (no `${{ inputs.` inside a `run:` block of `action.yml`) |
+| 12 | A pull request adds a symlink to a runner file so that its lines appear as snippets in SARIF or the PR comment | `lstat`, symlinks skipped, real path must stay inside the target (guardrail 13) | `tests/unit/files.unit.test.ts` |
+| 13 | LLM output leaks into outputs presented as computed (inventory counts, DPIA criteria, article citations in prose) | Counts, flags and facts from deterministic classifications only; LLM labels in their own column; `article-drift` check on prose covering plural, Portuguese, list, range and regime-number forms | `tests/e2e/injection.e2e.test.ts` (counts equal to the demo run), `tests/unit/call-llm.unit.test.ts` and `tests/e2e/documents.e2e.test.ts` (`article-drift.json`) |
+| 14 | Repository text or LLM text injects links, tracking images or @mentions into the PR comment, job summary or documents | `escapeMd`/`codeSpan` on every derived string; LLM rationale never in Markdown (guardrail 14) | `tests/unit/pr-comment.unit.test.ts` (crafted file name), `tests/unit/render.unit.test.ts` |
+| 15 | A pull request silences its own findings by adding suppressions or `ignore` globs to `privacy-radar.config.json` in the same PR (found in the final review) | PR mode scans both revisions with the base revision's config; a config change is named in the comment and takes effect only after merge (guardrail 8) | `tests/e2e/pr-mode.e2e.test.ts` (self-suppressing head commit) |
+
+## Guardrails behind the mitigations
+
+The numbers are the guardrails of the design spec (section 6.2) that the table above cites.
+
+1. **The LLM cannot suppress.** `mergeFindings` is the only function that combines LLM output with findings: it copies deterministic findings by reference and appends. A property test with a seeded generator checks the superset and byte-identity postconditions.
+2. **Repo text is data.** Every string from the target sits in an `<untrusted>` block; the system text says the block is data, never instructions.
+3. **Evidence must exist.** A label is accepted only if its evidence is a substring of the field's own context; narrative must name only articles of the section's deterministic list and only numbers present in the facts, with no spelled-out numbers.
+4. **Closed vocabularies.** Labels are a Zod enum of catalog ids plus `not-personal` and `unknown`; extra keys are rejected. The output has no field for severity, article, file, line or suppression. Labels never feed a rule, a count, a DPIA criterion or a narrative fact.
+5. **Mask everything.** Value hits and bound literals are masked at the source; an unparsed `INSERT` has all its literals masked; every snippet, declaration, sample and fingerprint comes from the masked copy.
+6. **No network in tests.** The guard replaces `fetch`, `net`, `dns`, `http` and `https` and is passed to every spawned child.
+7. **Secrets.** `redactSecrets` on every log, trace, error and CLI line; `check:secrets` in the hook and CI; key-shaped test values are built at run time.
+8. **Human-only suppressions.** A suppression needs a reason and an author; suppressed findings stay in the outputs. In PR mode both revisions are scanned with the base revision's config, so the author of a pull request cannot suppress or ignore the findings that pull request adds.
+9. **Degrade, do not fail.** Any LLM failure gives a warning and the deterministic output; `--llm none` yields identical deterministic findings.
+10. **Disclaimer everywhere.** Console banner, every document, SARIF, the PR comment footer, the README.
+11. **Legal status is dated data.** `checkedOn` in the adequacy and vendor files; every transfer message ends with "status as of <date>; verify".
+12. **Parser failures are findings, not crashes.** Per-file try/catch, `errorRecovery`, `DEPTH_LIMIT`, statement-wise SQL, a fuzz test.
+13. **The scanned repository cannot read outside itself.** `lstat`, symlinks skipped, real paths must stay inside the target.
+14. **Markdown cannot be injected.** `escapeMd` and `codeSpan` on every derived string; the LLM rationale never reaches Markdown.

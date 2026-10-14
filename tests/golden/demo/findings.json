@@ -1,0 +1,2197 @@
+{
+  "schemaVersion": 1,
+  "tool": {
+    "name": "privacy-radar",
+    "version": "0.1.0"
+  },
+  "target": {
+    "path": "fixtures/telehealth-clinic",
+    "files": 8,
+    "sources": {
+      "ts": 6,
+      "sql": 1,
+      "prisma": 1
+    }
+  },
+  "regime": "both",
+  "provider": "fake",
+  "generatedAt": "2026-10-08T12:00:00.000Z",
+  "summary": {
+    "error": 5,
+    "warning": 10,
+    "note": 3,
+    "suppressed": 0,
+    "llmLabeled": 1,
+    "belowThreshold": 0
+  },
+  "findings": [
+    {
+      "id": "PRF-75710fb636ee",
+      "fingerprint": "75710fb636eea142d07d2f756e883038",
+      "ruleId": "PR-ANALYTICS",
+      "origin": "deterministic",
+      "categories": [
+        "identifier.cpf",
+        "special.health"
+      ],
+      "sensitivity": "sensitive",
+      "severity": "error",
+      "confidence": 0.65,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "src/analytics.ts",
+        "line": 9,
+        "column": 3,
+        "snippet": "mixpanel.track(\"visit\", { cpf: patient.cpf, diagnosis: patient.diagnosis });"
+      },
+      "sink": {
+        "kind": "analytics",
+        "callee": "mixpanel.track",
+        "vendor": "Mixpanel",
+        "hqCountry": "US"
+      },
+      "transfer": [
+        {
+          "regime": "lgpd",
+          "status": "needs-mechanism",
+          "mechanism": "unknown",
+          "text": "Mixpanel (US): not on the ANPD adequacy list; needs LGPD art. 33 II or VIII evidence; status as of 2026-10-08; verify"
+        },
+        {
+          "regime": "gdpr",
+          "status": "conditional",
+          "mechanism": "unknown",
+          "text": "Mixpanel (US): Only organisations certified under the EU-US Data Privacy Framework (Commission decision of 2023-07-10); the CJEU appeal C-703/25 P (Latombe) was pending on 2026-10-08. Verify the vendor on dataprivacyframework.gov; status as of 2026-10-08; verify"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "sink",
+          "detail": "analytics sink mixpanel.track at line 9",
+          "weight": 0
+        },
+        {
+          "kind": "vendor",
+          "detail": "Mixpanel (US)",
+          "weight": 0
+        },
+        {
+          "kind": "field-name",
+          "detail": "identifier.cpf from patient.cpf at line 9",
+          "weight": 0.65
+        },
+        {
+          "kind": "field-name",
+          "detail": "special.health from object key diagnosis at line 9",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "I",
+            "title": "Purpose principle",
+            "summary": "Processing serves legitimate, specific, explicit purposes informed to the data subject, with no later processing that is incompatible with them.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-14",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "II",
+            "title": "Adequacy principle",
+            "summary": "Processing must be compatible with the purposes informed to the data subject, according to the context of the processing.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-14",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "III",
+            "title": "Necessity principle",
+            "summary": "Processing is limited to the minimum needed for its purposes, covering only relevant, proportionate and non-excessive data.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "7",
+            "title": "Legal bases for processing",
+            "summary": "Lists the ten legal bases for processing personal data, from consent to credit protection; item VIII covers health protection by health professionals or health services.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "11",
+            "title": "Legal bases for sensitive data",
+            "summary": "Sensitive data may be processed with specific, prominent consent or, without consent, only in the listed cases such as legal duty, life protection or health protection.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "33",
+            "title": "International transfer",
+            "summary": "International transfer of personal data is allowed only in the listed cases, such as adequate countries, contractual guarantees, consent or authorisation by the authority.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(b)",
+            "title": "Purpose limitation",
+            "summary": "Data are collected for specified, explicit and legitimate purposes and not further processed in a way that is incompatible with them.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-14",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-14; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "5(1)(c)",
+            "title": "Data minimisation",
+            "summary": "Data must be adequate, relevant and limited to what is necessary for the purposes of the processing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "6",
+            "title": "Lawfulness of processing",
+            "summary": "Processing is lawful only with a legal basis: consent, contract, legal obligation, vital interests, public task or legitimate interests.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-6-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "9(1)",
+            "title": "Special categories of data",
+            "summary": "Prohibits processing data revealing racial or ethnic origin, political, religious or philosophical beliefs, union membership, genetic or biometric data (for identification), health or sex life.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-9-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "28",
+            "title": "Processor",
+            "summary": "Processing by a processor requires a binding contract with the required terms, and only processors that offer sufficient guarantees may be used.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-28-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "44",
+            "title": "General principle for transfers",
+            "summary": "Transfers to third countries are allowed only if the conditions of the transfer chapter are met, so that the level of protection is not undermined.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-44-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "45",
+            "title": "Transfers on the basis of an adequacy decision",
+            "summary": "A transfer may take place to a country, territory or sector that the Commission has found to ensure an adequate level of protection.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-45-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "46",
+            "title": "Transfers subject to appropriate safeguards",
+            "summary": "Without an adequacy decision, transfers need appropriate safeguards, such as standard contractual clauses or binding corporate rules, with enforceable rights.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-46-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "identifier.cpf and special.health reach the analytics call mixpanel.track to Mixpanel (US); art. 28 applies if the vendor acts as a processor; verify the vendor's role (LGPD 6 I-III, 7, 11, 33, 46; GDPR 5(1)(b)(c), 6, 9(1), 28, 44-46).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-523d4d87c8f8",
+      "fingerprint": "523d4d87c8f84b318e18a09cf53e9f5e",
+      "ruleId": "PR-TRANSFER",
+      "origin": "deterministic",
+      "categories": [
+        "identifier.cpf",
+        "special.health"
+      ],
+      "sensitivity": "sensitive",
+      "severity": "error",
+      "confidence": 0.65,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "src/analytics.ts",
+        "line": 9,
+        "column": 3,
+        "snippet": "mixpanel.track(\"visit\", { cpf: patient.cpf, diagnosis: patient.diagnosis });"
+      },
+      "sink": {
+        "kind": "analytics",
+        "callee": "mixpanel.track",
+        "vendor": "Mixpanel",
+        "hqCountry": "US"
+      },
+      "transfer": [
+        {
+          "regime": "lgpd",
+          "status": "needs-mechanism",
+          "mechanism": "unknown",
+          "text": "Mixpanel (US): not on the ANPD adequacy list; needs LGPD art. 33 II or VIII evidence; status as of 2026-10-08; verify"
+        },
+        {
+          "regime": "gdpr",
+          "status": "conditional",
+          "mechanism": "unknown",
+          "text": "Mixpanel (US): Only organisations certified under the EU-US Data Privacy Framework (Commission decision of 2023-07-10); the CJEU appeal C-703/25 P (Latombe) was pending on 2026-10-08. Verify the vendor on dataprivacyframework.gov; status as of 2026-10-08; verify"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "sink",
+          "detail": "analytics sink mixpanel.track at line 9",
+          "weight": 0
+        },
+        {
+          "kind": "vendor",
+          "detail": "Mixpanel (US)",
+          "weight": 0
+        },
+        {
+          "kind": "field-name",
+          "detail": "identifier.cpf from patient.cpf at line 9",
+          "weight": 0.65
+        },
+        {
+          "kind": "field-name",
+          "detail": "special.health from object key diagnosis at line 9",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "33",
+            "title": "International transfer",
+            "summary": "International transfer of personal data is allowed only in the listed cases, such as adequate countries, contractual guarantees, consent or authorisation by the authority.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "33",
+            "item": "II",
+            "title": "Transfer with guarantees",
+            "summary": "Transfer is allowed when the controller offers and proves guarantees: specific clauses, standard clauses, global corporate rules, seals, certificates or codes of conduct.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "33",
+            "item": "VIII",
+            "title": "Transfer with consent",
+            "summary": "Transfer is allowed with the data subject's specific and prominent consent, after prior information on the international nature of the operation.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "34",
+            "title": "Assessment of the foreign protection level",
+            "summary": "The authority assesses the level of data protection of the foreign country or organisation, weighing legislation, the nature of the data, safeguards and other circumstances.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "35",
+            "title": "Standard and specific clauses",
+            "summary": "The authority defines the content of standard contractual clauses and verifies specific clauses, global corporate rules, seals and certificates.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "36",
+            "title": "Changes in guarantees",
+            "summary": "Changes to the guarantees presented for an international transfer must be communicated to the authority.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "44",
+            "title": "General principle for transfers",
+            "summary": "Transfers to third countries are allowed only if the conditions of the transfer chapter are met, so that the level of protection is not undermined.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-44-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "45",
+            "title": "Transfers on the basis of an adequacy decision",
+            "summary": "A transfer may take place to a country, territory or sector that the Commission has found to ensure an adequate level of protection.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-45-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "46",
+            "title": "Transfers subject to appropriate safeguards",
+            "summary": "Without an adequacy decision, transfers need appropriate safeguards, such as standard contractual clauses or binding corporate rules, with enforceable rights.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-46-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "47",
+            "title": "Binding corporate rules",
+            "summary": "Supervisory authorities approve binding corporate rules for transfers within a group of undertakings when the requirements are met.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-47-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "49",
+            "title": "Derogations for specific situations",
+            "summary": "Specific situations allow transfers without adequacy or safeguards, such as explicit consent after being informed of the risks.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-49-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "International transfer of identifier.cpf and special.health to Mixpanel (US): LGPD needs-mechanism, GDPR conditional; status as of 2026-10-08; verify (LGPD 33, 33 II, 33 VIII, 34-36; GDPR 44-47, 49).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-1ebfd8cb6584",
+      "fingerprint": "1ebfd8cb65845fefd2c4fefb55c1aad3",
+      "ruleId": "PR-URL-QUERY",
+      "origin": "deterministic",
+      "categories": [
+        "identifier.nif-pt"
+      ],
+      "sensitivity": "personal",
+      "severity": "error",
+      "confidence": 0.6,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "src/appointments.ts",
+        "line": 11,
+        "column": 62,
+        "snippet": "await fetch(`https://sms.example-vendor.invalid/send?nif=${patient.nifPt}&msg=reminder`);"
+      },
+      "sink": {
+        "kind": "url-query",
+        "callee": "<query>"
+      },
+      "evidence": [
+        {
+          "kind": "sink",
+          "detail": "url-query sink <query> at line 11",
+          "weight": 0
+        },
+        {
+          "kind": "field-name",
+          "detail": "identifier.nif-pt from patient.nifPt at line 11",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(f)",
+            "title": "Integrity and confidentiality",
+            "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "identifier.nif-pt reaches the URL query parameter \"nif\" (LGPD 6 VII, 46; GDPR 5(1)(f), 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-a801d7df93b2",
+      "fingerprint": "a801d7df93b2a2c218f5ff666722324e",
+      "ruleId": "PR-LOG",
+      "origin": "deterministic",
+      "categories": [
+        "children.guardian",
+        "contact.email",
+        "contact.phone",
+        "demographic.birth-date",
+        "identifier.codice-fiscale-it",
+        "identifier.cpf",
+        "identifier.dni-es",
+        "identifier.nif-pt",
+        "name.full-name",
+        "name.mother-name",
+        "special.health"
+      ],
+      "sensitivity": "sensitive",
+      "severity": "error",
+      "confidence": 0.75,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "src/patients.ts",
+        "line": 14,
+        "column": 3,
+        "snippet": "console.info(\"new patient\", input);"
+      },
+      "sink": {
+        "kind": "log",
+        "callee": "console.info"
+      },
+      "evidence": [
+        {
+          "kind": "sink",
+          "detail": "log sink console.info at line 14",
+          "weight": 0
+        },
+        {
+          "kind": "type-hint",
+          "detail": "name.full-name from input at line 14",
+          "weight": 0.6
+        },
+        {
+          "kind": "type-hint",
+          "detail": "identifier.cpf from input at line 14",
+          "weight": 0.65
+        },
+        {
+          "kind": "type-hint",
+          "detail": "identifier.nif-pt from input at line 14",
+          "weight": 0.6
+        },
+        {
+          "kind": "type-hint",
+          "detail": "identifier.dni-es from input at line 14",
+          "weight": 0.6
+        },
+        {
+          "kind": "type-hint",
+          "detail": "identifier.codice-fiscale-it from input at line 14",
+          "weight": 0.6
+        },
+        {
+          "kind": "type-hint",
+          "detail": "contact.email from input at line 14",
+          "weight": 0.6
+        },
+        {
+          "kind": "type-hint",
+          "detail": "contact.phone from input at line 14",
+          "weight": 0.6
+        },
+        {
+          "kind": "type-hint",
+          "detail": "demographic.birth-date from input at line 14",
+          "weight": 0.75
+        },
+        {
+          "kind": "type-hint",
+          "detail": "children.guardian from input at line 14",
+          "weight": 0.6
+        },
+        {
+          "kind": "type-hint",
+          "detail": "special.health from input at line 14",
+          "weight": 0.6
+        },
+        {
+          "kind": "type-hint",
+          "detail": "name.mother-name from input at line 14",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "11",
+            "title": "Legal bases for sensitive data",
+            "summary": "Sensitive data may be processed with specific, prominent consent or, without consent, only in the listed cases such as legal duty, life protection or health protection.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "14",
+            "title": "Children's and adolescents' data",
+            "summary": "Processing the data of children and adolescents must serve their best interest.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(f)",
+            "title": "Integrity and confidentiality",
+            "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "8",
+            "title": "Child's consent for information society services",
+            "summary": "Applies to consent-based information society services offered directly to a child; the consent age is 16 and member states may lower it to no less than 13.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-8-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "9(1)",
+            "title": "Special categories of data",
+            "summary": "Prohibits processing data revealing racial or ethnic origin, political, religious or philosophical beliefs, union membership, genetic or biometric data (for identification), health or sex life.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-9-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "children.guardian, contact.email, contact.phone and 8 more reach the log call console.info (LGPD 6 VII, 11, 14, 46; GDPR 5(1)(f), 8, 9(1), 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-d62cb6e822ab",
+      "fingerprint": "d62cb6e822ab20e2e58bd34d7fdea5f0",
+      "ruleId": "PR-LOG",
+      "origin": "deterministic",
+      "categories": [
+        "identifier.cpf"
+      ],
+      "sensitivity": "personal",
+      "severity": "error",
+      "confidence": 0.6,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "src/patients.ts",
+        "line": 22,
+        "column": 3,
+        "snippet": "logger.debug(`lookup ${cpf}`);"
+      },
+      "sink": {
+        "kind": "log",
+        "callee": "logger.debug"
+      },
+      "evidence": [
+        {
+          "kind": "sink",
+          "detail": "log sink logger.debug at line 22",
+          "weight": 0
+        },
+        {
+          "kind": "field-name",
+          "detail": "identifier.cpf from cpf at line 22",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(f)",
+            "title": "Integrity and confidentiality",
+            "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "identifier.cpf reaches the log call logger.debug (LGPD 6 VII, 46; GDPR 5(1)(f), 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-a6cc4ffa6e11",
+      "fingerprint": "a6cc4ffa6e117e501246fa3a8808d634",
+      "ruleId": "PR-HARDCODED-VALUE",
+      "origin": "deterministic",
+      "categories": [
+        "identifier.codice-fiscale-it",
+        "identifier.cpf",
+        "identifier.dni-es",
+        "identifier.nie-es",
+        "identifier.nif-pt"
+      ],
+      "sensitivity": "personal",
+      "severity": "warning",
+      "confidence": 0.9,
+      "confidenceLevel": "high",
+      "location": {
+        "file": "migrations/001_init.sql",
+        "line": 43,
+        "column": 14,
+        "snippet": "('p-001', '***.***.***-56', NULL, NULL, '**************1G'),"
+      },
+      "evidence": [
+        {
+          "kind": "checksum",
+          "detail": "identifier.cpf value ***.***.***-56 at line 43",
+          "weight": 0.9
+        },
+        {
+          "kind": "checksum",
+          "detail": "identifier.codice-fiscale-it value **************1G at line 43",
+          "weight": 0.9
+        },
+        {
+          "kind": "checksum",
+          "detail": "identifier.nif-pt value *******18 at line 44",
+          "weight": 0.9
+        },
+        {
+          "kind": "checksum",
+          "detail": "identifier.dni-es value *******5X at line 44",
+          "weight": 0.9
+        },
+        {
+          "kind": "checksum",
+          "detail": "identifier.nif-pt value *******72 at line 45",
+          "weight": 0.9
+        },
+        {
+          "kind": "checksum",
+          "detail": "identifier.nie-es value *******2Q at line 45",
+          "weight": 0.9
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "III",
+            "title": "Necessity principle",
+            "summary": "Processing is limited to the minimum needed for its purposes, covering only relevant, proportionate and non-excessive data.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(c)",
+            "title": "Data minimisation",
+            "summary": "Data must be adequate, relevant and limited to what is necessary for the purposes of the processing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "5(1)(f)",
+            "title": "Integrity and confidentiality",
+            "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "6 hard-coded personal values (identifier.codice-fiscale-it, identifier.cpf, identifier.dni-es, identifier.nie-es, identifier.nif-pt); move them to a secret store or synthetic test data (LGPD 6 III, 6 VII, 46; GDPR 5(1)(c)(f), 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-657cf280cb51",
+      "fingerprint": "657cf280cb5109836e135a182868a24d",
+      "ruleId": "PR-RETENTION",
+      "origin": "deterministic",
+      "categories": [
+        "special.health"
+      ],
+      "sensitivity": "sensitive",
+      "severity": "warning",
+      "confidence": 0.75,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "prisma/schema.prisma",
+        "line": 3,
+        "column": 7,
+        "snippet": "model Patient {"
+      },
+      "entity": {
+        "name": "Patient",
+        "field": "",
+        "kind": "model"
+      },
+      "evidence": [
+        {
+          "kind": "field-name",
+          "detail": "12 personal field candidates; no deleted_at, expires_at, retention, purge or anonymized_at field and no config retention entry",
+          "weight": 0
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "III",
+            "title": "Necessity principle",
+            "summary": "Processing is limited to the minimum needed for its purposes, covering only relevant, proportionate and non-excessive data.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "15",
+            "title": "End of processing",
+            "summary": "Processing ends when its purpose is reached, the data are no longer needed, the data subject withdraws consent, or the authority orders it.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "16",
+            "title": "Deletion after processing ends",
+            "summary": "Data are deleted after processing ends, except for legal duty, research, permitted transfer to a third party, or anonymised use by the controller.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(e)",
+            "title": "Storage limitation",
+            "summary": "Data are kept in a form that identifies people for no longer than is necessary for the purposes.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "30(1)",
+            "title": "Records of processing activities (controller)",
+            "summary": "The controller records purposes, data categories, recipients, transfers, retention limits and security measures; retention and security items apply where possible.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-30-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "Entity Patient stores personal data (contact.email, contact.phone, demographic.birth-date and 7 more) with no retention signal (no deleted_at, expires_at, retention, purge or anonymized_at field and no config retention entry) (LGPD 6 III, 15, 16; GDPR 5(1)(e), 30(1)).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-f4843659e367",
+      "fingerprint": "f4843659e367fa7c7126993fd5aa3a93",
+      "ruleId": "PR-PLAINTEXT-SENSITIVE",
+      "origin": "deterministic",
+      "categories": [
+        "special.health"
+      ],
+      "sensitivity": "sensitive",
+      "severity": "warning",
+      "confidence": 0.6,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "prisma/schema.prisma",
+        "line": 14,
+        "column": 3,
+        "snippet": "diagnosis String"
+      },
+      "entity": {
+        "name": "Patient",
+        "field": "diagnosis",
+        "kind": "model"
+      },
+      "evidence": [
+        {
+          "kind": "field-name",
+          "detail": "exact term \"diagnosis\" (en)",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "11",
+            "title": "Legal bases for sensitive data",
+            "summary": "Sensitive data may be processed with specific, prominent consent or, without consent, only in the listed cases such as legal duty, life protection or health protection.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(f)",
+            "title": "Integrity and confidentiality",
+            "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "9(1)",
+            "title": "Special categories of data",
+            "summary": "Prohibits processing data revealing racial or ethnic origin, political, religious or philosophical beliefs, union membership, genetic or biometric data (for identification), health or sex life.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-9-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "25",
+            "title": "Data protection by design and by default",
+            "summary": "Controllers apply technical and organisational measures so that data protection principles are built in and only necessary data are processed by default.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-25-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "Field Patient.diagnosis (special.health) is stored as plain text; encrypt, hash or restrict it (LGPD 6 VII, 11, 46; GDPR 5(1)(f), 9(1), 25, 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-c182bf867fe3",
+      "fingerprint": "c182bf867fe39ed04629daa91c55ad63",
+      "ruleId": "PR-PLAINTEXT-SENSITIVE",
+      "origin": "deterministic",
+      "categories": [
+        "special.health"
+      ],
+      "sensitivity": "sensitive",
+      "severity": "warning",
+      "confidence": 0.6,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "prisma/schema.prisma",
+        "line": 15,
+        "column": 3,
+        "snippet": "allergies String"
+      },
+      "entity": {
+        "name": "Patient",
+        "field": "allergies",
+        "kind": "model"
+      },
+      "evidence": [
+        {
+          "kind": "field-name",
+          "detail": "exact term \"allergies\" (en)",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "11",
+            "title": "Legal bases for sensitive data",
+            "summary": "Sensitive data may be processed with specific, prominent consent or, without consent, only in the listed cases such as legal duty, life protection or health protection.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(f)",
+            "title": "Integrity and confidentiality",
+            "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "9(1)",
+            "title": "Special categories of data",
+            "summary": "Prohibits processing data revealing racial or ethnic origin, political, religious or philosophical beliefs, union membership, genetic or biometric data (for identification), health or sex life.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-9-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "25",
+            "title": "Data protection by design and by default",
+            "summary": "Controllers apply technical and organisational measures so that data protection principles are built in and only necessary data are processed by default.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-25-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "Field Patient.allergies (special.health) is stored as plain text; encrypt, hash or restrict it (LGPD 6 VII, 11, 46; GDPR 5(1)(f), 9(1), 25, 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-434fb7038dc0",
+      "fingerprint": "434fb7038dc0ea1bc12681553b903db4",
+      "ruleId": "PR-PLAINTEXT-SENSITIVE",
+      "origin": "deterministic",
+      "categories": [
+        "special.health"
+      ],
+      "sensitivity": "sensitive",
+      "severity": "warning",
+      "confidence": 0.6,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "prisma/schema.prisma",
+        "line": 16,
+        "column": 3,
+        "snippet": "bloodType String"
+      },
+      "entity": {
+        "name": "Patient",
+        "field": "bloodType",
+        "kind": "model"
+      },
+      "evidence": [
+        {
+          "kind": "field-name",
+          "detail": "exact term \"blood_type\" (en)",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "11",
+            "title": "Legal bases for sensitive data",
+            "summary": "Sensitive data may be processed with specific, prominent consent or, without consent, only in the listed cases such as legal duty, life protection or health protection.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(f)",
+            "title": "Integrity and confidentiality",
+            "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "9(1)",
+            "title": "Special categories of data",
+            "summary": "Prohibits processing data revealing racial or ethnic origin, political, religious or philosophical beliefs, union membership, genetic or biometric data (for identification), health or sex life.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-9-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "25",
+            "title": "Data protection by design and by default",
+            "summary": "Controllers apply technical and organisational measures so that data protection principles are built in and only necessary data are processed by default.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-25-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "Field Patient.bloodType (special.health) is stored as plain text; encrypt, hash or restrict it (LGPD 6 VII, 11, 46; GDPR 5(1)(f), 9(1), 25, 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-625c0e6ca12c",
+      "fingerprint": "625c0e6ca12c93c025cf3cf374acc4e9",
+      "ruleId": "PR-THIRD-PARTY",
+      "origin": "deterministic",
+      "categories": [
+        "contact.email"
+      ],
+      "sensitivity": "personal",
+      "severity": "warning",
+      "confidence": 0.6,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "src/analytics.ts",
+        "line": 12,
+        "column": 9,
+        "snippet": "await fetch(\"https://api.mixpanel.com/engage\", { method: \"POST\", body: JSON.stringify(payload) });"
+      },
+      "sink": {
+        "kind": "http",
+        "callee": "fetch",
+        "host": "api.mixpanel.com",
+        "vendor": "Mixpanel",
+        "hqCountry": "US",
+        "firstParty": false,
+        "hop": {
+          "via": "payload",
+          "line": 11
+        }
+      },
+      "transfer": [
+        {
+          "regime": "lgpd",
+          "status": "needs-mechanism",
+          "mechanism": "unknown",
+          "text": "Mixpanel (US): not on the ANPD adequacy list; needs LGPD art. 33 II or VIII evidence; status as of 2026-10-08; verify"
+        },
+        {
+          "regime": "gdpr",
+          "status": "conditional",
+          "mechanism": "unknown",
+          "text": "Mixpanel (US): Only organisations certified under the EU-US Data Privacy Framework (Commission decision of 2023-07-10); the CJEU appeal C-703/25 P (Latombe) was pending on 2026-10-08. Verify the vendor on dataprivacyframework.gov; status as of 2026-10-08; verify"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "sink",
+          "detail": "http sink fetch at line 12",
+          "weight": 0
+        },
+        {
+          "kind": "vendor",
+          "detail": "Mixpanel (US)",
+          "weight": 0
+        },
+        {
+          "kind": "field-name",
+          "detail": "contact.email from object key email at line 11 through payload",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "33",
+            "title": "International transfer",
+            "summary": "International transfer of personal data is allowed only in the listed cases, such as adequate countries, contractual guarantees, consent or authorisation by the authority.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "28",
+            "title": "Processor",
+            "summary": "Processing by a processor requires a binding contract with the required terms, and only processors that offer sufficient guarantees may be used.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-28-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "44",
+            "title": "General principle for transfers",
+            "summary": "Transfers to third countries are allowed only if the conditions of the transfer chapter are met, so that the level of protection is not undermined.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-44-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "45",
+            "title": "Transfers on the basis of an adequacy decision",
+            "summary": "A transfer may take place to a country, territory or sector that the Commission has found to ensure an adequate level of protection.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-45-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "46",
+            "title": "Transfers subject to appropriate safeguards",
+            "summary": "Without an adequacy decision, transfers need appropriate safeguards, such as standard contractual clauses or binding corporate rules, with enforceable rights.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-46-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "contact.email reaches the HTTP call fetch to api.mixpanel.com (Mixpanel, US) through the local binding payload; art. 28 applies if the vendor acts as a processor; verify the vendor's role (LGPD 6 VII, 33, 46; GDPR 28, 32, 44-46).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-0fa0612e8403",
+      "fingerprint": "0fa0612e8403c1f0f8befc93e29ad54e",
+      "ruleId": "PR-TRANSFER",
+      "origin": "deterministic",
+      "categories": [
+        "contact.email"
+      ],
+      "sensitivity": "personal",
+      "severity": "warning",
+      "confidence": 0.6,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "src/analytics.ts",
+        "line": 12,
+        "column": 9,
+        "snippet": "await fetch(\"https://api.mixpanel.com/engage\", { method: \"POST\", body: JSON.stringify(payload) });"
+      },
+      "sink": {
+        "kind": "http",
+        "callee": "fetch",
+        "host": "api.mixpanel.com",
+        "vendor": "Mixpanel",
+        "hqCountry": "US",
+        "firstParty": false,
+        "hop": {
+          "via": "payload",
+          "line": 11
+        }
+      },
+      "transfer": [
+        {
+          "regime": "lgpd",
+          "status": "needs-mechanism",
+          "mechanism": "unknown",
+          "text": "Mixpanel (US): not on the ANPD adequacy list; needs LGPD art. 33 II or VIII evidence; status as of 2026-10-08; verify"
+        },
+        {
+          "regime": "gdpr",
+          "status": "conditional",
+          "mechanism": "unknown",
+          "text": "Mixpanel (US): Only organisations certified under the EU-US Data Privacy Framework (Commission decision of 2023-07-10); the CJEU appeal C-703/25 P (Latombe) was pending on 2026-10-08. Verify the vendor on dataprivacyframework.gov; status as of 2026-10-08; verify"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "sink",
+          "detail": "http sink fetch at line 12",
+          "weight": 0
+        },
+        {
+          "kind": "vendor",
+          "detail": "Mixpanel (US)",
+          "weight": 0
+        },
+        {
+          "kind": "field-name",
+          "detail": "contact.email from object key email at line 11 through payload",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "33",
+            "title": "International transfer",
+            "summary": "International transfer of personal data is allowed only in the listed cases, such as adequate countries, contractual guarantees, consent or authorisation by the authority.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "33",
+            "item": "II",
+            "title": "Transfer with guarantees",
+            "summary": "Transfer is allowed when the controller offers and proves guarantees: specific clauses, standard clauses, global corporate rules, seals, certificates or codes of conduct.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "33",
+            "item": "VIII",
+            "title": "Transfer with consent",
+            "summary": "Transfer is allowed with the data subject's specific and prominent consent, after prior information on the international nature of the operation.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "34",
+            "title": "Assessment of the foreign protection level",
+            "summary": "The authority assesses the level of data protection of the foreign country or organisation, weighing legislation, the nature of the data, safeguards and other circumstances.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "35",
+            "title": "Standard and specific clauses",
+            "summary": "The authority defines the content of standard contractual clauses and verifies specific clauses, global corporate rules, seals and certificates.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "36",
+            "title": "Changes in guarantees",
+            "summary": "Changes to the guarantees presented for an international transfer must be communicated to the authority.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "44",
+            "title": "General principle for transfers",
+            "summary": "Transfers to third countries are allowed only if the conditions of the transfer chapter are met, so that the level of protection is not undermined.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-44-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "45",
+            "title": "Transfers on the basis of an adequacy decision",
+            "summary": "A transfer may take place to a country, territory or sector that the Commission has found to ensure an adequate level of protection.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-45-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "46",
+            "title": "Transfers subject to appropriate safeguards",
+            "summary": "Without an adequacy decision, transfers need appropriate safeguards, such as standard contractual clauses or binding corporate rules, with enforceable rights.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-46-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "47",
+            "title": "Binding corporate rules",
+            "summary": "Supervisory authorities approve binding corporate rules for transfers within a group of undertakings when the requirements are met.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-47-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "49",
+            "title": "Derogations for specific situations",
+            "summary": "Specific situations allow transfers without adequacy or safeguards, such as explicit consent after being informed of the risks.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-49-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "International transfer of contact.email to api.mixpanel.com (Mixpanel, US): LGPD needs-mechanism, GDPR conditional; status as of 2026-10-08; verify (LGPD 33, 33 II, 33 VIII, 34-36; GDPR 44-47, 49).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-03c1b747fbda",
+      "fingerprint": "03c1b747fbda688641475982d7859456",
+      "ruleId": "PR-THIRD-PARTY",
+      "origin": "deterministic",
+      "categories": [
+        "identifier.nif-pt"
+      ],
+      "sensitivity": "personal",
+      "severity": "warning",
+      "confidence": 0.6,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "src/appointments.ts",
+        "line": 11,
+        "column": 9,
+        "snippet": "await fetch(`https://sms.example-vendor.invalid/send?nif=${patient.nifPt}&msg=reminder`);"
+      },
+      "sink": {
+        "kind": "http",
+        "callee": "fetch",
+        "host": "sms.example-vendor.invalid",
+        "firstParty": false
+      },
+      "transfer": [
+        {
+          "regime": "lgpd",
+          "status": "unknown-destination",
+          "mechanism": "unknown",
+          "text": "sms.example-vendor.invalid: unknown destination, the host is not in the vendor catalog; status as of 2026-10-08; verify"
+        },
+        {
+          "regime": "gdpr",
+          "status": "unknown-destination",
+          "mechanism": "unknown",
+          "text": "sms.example-vendor.invalid: unknown destination, the host is not in the vendor catalog; status as of 2026-10-08; verify"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "sink",
+          "detail": "http sink fetch at line 11",
+          "weight": 0
+        },
+        {
+          "kind": "vendor",
+          "detail": "sms.example-vendor.invalid (unknown destination)",
+          "weight": 0
+        },
+        {
+          "kind": "field-name",
+          "detail": "identifier.nif-pt from patient.nifPt at line 11",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "28",
+            "title": "Processor",
+            "summary": "Processing by a processor requires a binding contract with the required terms, and only processors that offer sufficient guarantees may be used.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-28-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "identifier.nif-pt reaches the HTTP call fetch to sms.example-vendor.invalid (unknown destination); art. 28 applies if the vendor acts as a processor; verify the vendor's role (LGPD 6 VII, 46; GDPR 28, 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-abe3990272c6",
+      "fingerprint": "abe3990272c6279c9069e8b9b781f79b",
+      "ruleId": "PR-FILE",
+      "origin": "deterministic",
+      "categories": [
+        "financial.iban",
+        "name.full-name"
+      ],
+      "sensitivity": "personal",
+      "severity": "warning",
+      "confidence": 0.6,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "src/billing.ts",
+        "line": 8,
+        "column": 3,
+        "snippet": "fs.appendFileSync(\"invoices.csv\", `${p.fullName},${iban}`);"
+      },
+      "sink": {
+        "kind": "file",
+        "callee": "fs.appendFileSync"
+      },
+      "evidence": [
+        {
+          "kind": "sink",
+          "detail": "file sink fs.appendFileSync at line 8",
+          "weight": 0
+        },
+        {
+          "kind": "field-name",
+          "detail": "name.full-name from p.fullName at line 8",
+          "weight": 0.6
+        },
+        {
+          "kind": "field-name",
+          "detail": "financial.iban from iban at line 8",
+          "weight": 0.6
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(f)",
+            "title": "Integrity and confidentiality",
+            "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "financial.iban and name.full-name reach the file write fs.appendFileSync (LGPD 6 VII, 46; GDPR 5(1)(f), 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-206f6fd6b0f0",
+      "fingerprint": "206f6fd6b0f0ab0f2d53dfd899a0dfb3",
+      "ruleId": "PR-HARDCODED-VALUE",
+      "origin": "deterministic",
+      "categories": [
+        "contact.email",
+        "financial.card-pan",
+        "financial.iban",
+        "identifier.bsn-nl",
+        "identifier.cpf",
+        "identifier.nir-fr",
+        "identifier.steuer-id-de"
+      ],
+      "sensitivity": "personal",
+      "severity": "warning",
+      "confidence": 0.9,
+      "confidenceLevel": "high",
+      "location": {
+        "file": "src/server.ts",
+        "line": 13,
+        "column": 11,
+        "snippet": "cpf: \"***.***.***-97\","
+      },
+      "evidence": [
+        {
+          "kind": "checksum",
+          "detail": "identifier.cpf value ***.***.***-97 at line 13",
+          "weight": 0.9
+        },
+        {
+          "kind": "value-pattern",
+          "detail": "contact.email value *****.******@*******.invalid at line 14",
+          "weight": 0.8
+        },
+        {
+          "kind": "checksum",
+          "detail": "financial.iban value **** **** **** **** **** ***9 2 at line 16",
+          "weight": 0.9
+        },
+        {
+          "kind": "checksum",
+          "detail": "identifier.steuer-id-de value *********65 at line 17",
+          "weight": 0.9
+        },
+        {
+          "kind": "checksum",
+          "detail": "identifier.bsn-nl value *******82 at line 18",
+          "weight": 0.9
+        },
+        {
+          "kind": "checksum",
+          "detail": "identifier.cpf value ***.***.***-64 at line 22",
+          "weight": 0.9
+        },
+        {
+          "kind": "value-pattern",
+          "detail": "contact.email value ******.*********@*******.invalid at line 23",
+          "weight": 0.8
+        },
+        {
+          "kind": "checksum",
+          "detail": "identifier.nir-fr value * ** ** ** *** *** 82 at line 24",
+          "weight": 0.9
+        },
+        {
+          "kind": "checksum",
+          "detail": "financial.card-pan value **** **** **** **07 at line 25",
+          "weight": 0.9
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "III",
+            "title": "Necessity principle",
+            "summary": "Processing is limited to the minimum needed for its purposes, covering only relevant, proportionate and non-excessive data.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "VII",
+            "title": "Security principle",
+            "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "46",
+            "title": "Security measures",
+            "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(c)",
+            "title": "Data minimisation",
+            "summary": "Data must be adequate, relevant and limited to what is necessary for the purposes of the processing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "5(1)(f)",
+            "title": "Integrity and confidentiality",
+            "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "32",
+            "title": "Security of processing",
+            "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "9 hard-coded personal values (contact.email, financial.card-pan, financial.iban, identifier.bsn-nl, identifier.cpf, identifier.nir-fr, identifier.steuer-id-de); move them to a secret store or synthetic test data (LGPD 6 III, 6 VII, 46; GDPR 5(1)(c)(f), 32).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-a564f29cec7a",
+      "fingerprint": "a564f29cec7a0c9949a348662e726da2",
+      "ruleId": "PR-CHILD",
+      "origin": "deterministic",
+      "categories": [
+        "children.guardian"
+      ],
+      "sensitivity": "children-indicator",
+      "severity": "note",
+      "confidence": 0.75,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "prisma/schema.prisma",
+        "line": 3,
+        "column": 7,
+        "snippet": "model Patient {"
+      },
+      "entity": {
+        "name": "Patient",
+        "field": "",
+        "kind": "model"
+      },
+      "evidence": [
+        {
+          "kind": "field-name",
+          "detail": "children.guardian (0.60)",
+          "weight": 0.6
+        },
+        {
+          "kind": "field-name",
+          "detail": "demographic.birth-date (0.75)",
+          "weight": 0.75
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "14",
+            "title": "Children's and adolescents' data",
+            "summary": "Processing the data of children and adolescents must serve their best interest.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "14",
+            "item": "§1",
+            "title": "Parental consent for children's data",
+            "summary": "Processing a child's data requires specific and prominent consent from at least one parent or legal guardian.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "8",
+            "title": "Child's consent for information society services",
+            "summary": "Applies to consent-based information society services offered directly to a child; the consent age is 16 and member states may lower it to no less than 13.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-8-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "recital 38",
+            "title": "Specific protection of children",
+            "summary": "Children merit specific protection of their personal data, particularly for marketing, profiling and services offered directly to a child.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-14",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/recitals/no-38/ on 2026-10-14; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "recital 75",
+            "title": "Risks to the rights and freedoms of people",
+            "summary": "Describes risks of varying likelihood and severity, including processing the personal data of vulnerable natural persons, in particular children.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-14",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/recitals/no-75/ on 2026-10-14; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "Entity Patient has children indicators (children.guardian and demographic.birth-date); minority is not asserted, verify whether children's data is processed (LGPD 14, 14 §1; GDPR 8, recital 38, recital 75).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-06707e287ae6",
+      "fingerprint": "06707e287ae689d8d8f70e0f3609d158",
+      "ruleId": "PR-AMBIGUOUS",
+      "origin": "llm",
+      "categories": [
+        "special.health"
+      ],
+      "sensitivity": "sensitive",
+      "severity": "note",
+      "confidence": 0.62,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "prisma/schema.prisma",
+        "line": 17,
+        "column": 3,
+        "snippet": "obs Json?"
+      },
+      "entity": {
+        "name": "Patient",
+        "field": "obs",
+        "kind": "model"
+      },
+      "evidence": [
+        {
+          "kind": "llm-label",
+          "detail": "special.health (0.62)",
+          "weight": 0
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "5",
+            "item": "I",
+            "title": "Personal data (definition)",
+            "summary": "Information relating to an identified or identifiable natural person.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "4(1)",
+            "title": "Personal data (definition)",
+            "summary": "Information relating to an identified or identifiable natural person, directly or through identifiers such as a name, identification number, location data or online identifier.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-4-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "Ambiguous field Patient.obs was labeled special.health (0.62) by the LLM; advisory, review the field (LGPD 5 I; GDPR 4(1)).",
+      "belowThreshold": false
+    },
+    {
+      "id": "PRF-bf414ef5e585",
+      "fingerprint": "bf414ef5e5857c9024b1961c00e1d495",
+      "ruleId": "PR-RETENTION",
+      "origin": "deterministic",
+      "categories": [
+        "contact.phone"
+      ],
+      "sensitivity": "personal",
+      "severity": "note",
+      "confidence": 0.5,
+      "confidenceLevel": "medium",
+      "location": {
+        "file": "prisma/schema.prisma",
+        "line": 22,
+        "column": 7,
+        "snippet": "model Appointment {"
+      },
+      "entity": {
+        "name": "Appointment",
+        "field": "",
+        "kind": "model"
+      },
+      "evidence": [
+        {
+          "kind": "field-name",
+          "detail": "1 personal field candidates; no deleted_at, expires_at, retention, purge or anonymized_at field and no config retention entry",
+          "weight": 0
+        }
+      ],
+      "articles": {
+        "lgpd": [
+          {
+            "regime": "lgpd",
+            "article": "6",
+            "item": "III",
+            "title": "Necessity principle",
+            "summary": "Processing is limited to the minimum needed for its purposes, covering only relevant, proportionate and non-excessive data.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "15",
+            "title": "End of processing",
+            "summary": "Processing ends when its purpose is reached, the data are no longer needed, the data subject withdraws consent, or the authority orders it.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          },
+          {
+            "regime": "lgpd",
+            "article": "16",
+            "title": "Deletion after processing ends",
+            "summary": "Data are deleted after processing ends, except for legal duty, research, permitted transfer to a third party, or anonymised use by the controller.",
+            "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "official"
+          }
+        ],
+        "gdpr": [
+          {
+            "regime": "gdpr",
+            "article": "5(1)(e)",
+            "title": "Storage limitation",
+            "summary": "Data are kept in a form that identifies people for no longer than is necessary for the purposes.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          },
+          {
+            "regime": "gdpr",
+            "article": "30(1)",
+            "title": "Records of processing activities (controller)",
+            "summary": "The controller records purposes, data categories, recipients, transfers, retention limits and security measures; retention and security items apply where possible.",
+            "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+            "verifiedOn": "2026-10-08",
+            "verifiedAgainst": "mirror:gdpr-info.eu",
+            "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-30-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+          }
+        ]
+      },
+      "message": "Entity Appointment stores personal data (contact.phone) with no retention signal (no deleted_at, expires_at, retention, purge or anonymized_at field and no config retention entry) (LGPD 6 III, 15, 16; GDPR 5(1)(e), 30(1)).",
+      "belowThreshold": false
+    }
+  ],
+  "warnings": [],
+  "llm": {
+    "calls": 10,
+    "degraded": 0,
+    "repaired": 1,
+    "fieldsClassified": 2,
+    "narrativeSections": 8,
+    "simulated": true
+  }
+}

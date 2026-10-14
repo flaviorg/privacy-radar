@@ -1,0 +1,46 @@
+{
+  "name": "privacy-radar",
+  "version": "0.1.0",
+  "description": "Scans a Node/TypeScript repository for personal-data inventory and risky flows, mapped to LGPD and GDPR articles.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flaviorg/privacy-radar"
+  },
+  "engines": {
+    "node": ">=24.21"
+  },
+  "scripts": {
+    "radar": "node --env-file-if-exists=.env src/cli.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --import ./tests/setup/no-network.ts --test \"tests/unit/**/*.test.ts\" \"tests/e2e/**/*.test.ts\"",
+    "test:unit": "node --import ./tests/setup/no-network.ts --test \"tests/unit/**/*.test.ts\"",
+    "test:e2e": "node --import ./tests/setup/no-network.ts --test \"tests/e2e/**/*.test.ts\"",
+    "test:dev": "node --import ./tests/setup/no-network.ts --test --watch \"tests/unit/**/*.test.ts\"",
+    "catalog:validate": "node src/cli.ts catalog --validate",
+    "catalog:freshness": "node scripts/check-catalog-freshness.ts",
+    "eval:classifier": "node scripts/eval.ts --target classifier",
+    "fixtures:rehash": "node scripts/rehash-fixtures.ts",
+    "test:live": "node --env-file-if-exists=.env --test \"tests/live/**/*.live.ts\"",
+    "demo": "node scripts/demo.ts",
+    "regen": "node scripts/regen.ts",
+    "eval:fake": "node --import ./tests/setup/no-network.ts scripts/eval.ts --target labeler --provider fake",
+    "eval:live": "node --env-file-if-exists=.env scripts/eval.ts --target labeler --provider openai-compatible --write auto",
+    "check:secrets": "node scripts/check-secrets.ts",
+    "setup:hooks": "git config core.hooksPath .githooks",
+    "diagrams:check": "node scripts/check-diagrams.ts",
+    "verify": "npm run typecheck && npm test && npm run check:secrets && npm run catalog:validate && npm run catalog:freshness && npm run diagrams:check && npm run eval:fake"
+  },
+  "dependencies": {
+    "@babel/parser": "8.0.7",
+    "pgsql-ast-parser": "12.0.2",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.1",
+    "@types/sarif": "2.1.7",
+    "typescript": "7.0.2"
+  }
+}

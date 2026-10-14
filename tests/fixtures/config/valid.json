@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "controller": { "name": "Clínica Vida Telehealth Ltda. (fixture)", "contact": "privacy@example.invalid", "dpo": "DPO name (fill in)", "country": "BR" },
+  "purposes": { "Patient": "Telehealth consultations and prescriptions", "Appointment": "Scheduling" },
+  "legalBases": { "Patient": { "lgpd": "art. 7 VIII / art. 11 II f (tutela da saúde)", "gdpr": "art. 9(2)(h)" } },
+  "retention": { "Appointment": "5 years after the last consultation (fill in the legal reference)" },
+  "vendors": { "api.mixpanel.com": { "mechanism": "unknown", "notes": "No DPA on file" } },
+  "ignore": ["**/generated/**"],
+  "suppressions": [
+    { "fingerprint": "3f9a0c1e5b7d2a4c8e6f0b1d3a5c7e9f", "reason": "Test fixture data, not production", "by": "flavio", "until": "2027-01-01" },
+    { "rule": "PR-LOG", "file": "src/logger.ts", "line": 12, "reason": "Logs synthetic data only", "by": "flavio" }
+  ],
+  "llm": { "maxFields": 20 },
+  "reportLanguage": "en"
+}

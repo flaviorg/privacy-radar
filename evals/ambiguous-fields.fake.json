@@ -1,0 +1,375 @@
+{
+  "schemaVersion": 1,
+  "scenario": "ambiguous-fields-eval",
+  "description": "Scripted labels for evals/ambiguous-fields.jsonl: every row answered with its expected label except exactly 3 planted wrong labels (amb-05, amb-13, amb-19) and 1 planted evidence mismatch (amb-10), so eval:fake must report accuracy (n - 4) / n and evidence-mismatch 1 / n. It measures the harness, not any model.",
+  "promptHashes": {
+    "label-field.v1": "sha256:f579d6040c1b73d4bf0f5d81a499212861a288baf8dde2741fcc89f09893aa33",
+    "draft-narrative.v1": "sha256:9345516b24d1efd9481e4a5ab320c70f3afd57cf9cb7a1626560b310fc63fc6e"
+  },
+  "turns": [
+    {
+      "id": "label-amb-01",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Patient",
+        "field": "obs"
+      },
+      "output": {
+        "label": "special.health",
+        "confidence": 0.62,
+        "evidence": "obs Json?",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-02",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Appointment",
+        "field": "extra"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.3,
+        "evidence": "extra Json?",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-03",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Customer",
+        "field": "metadata"
+      },
+      "output": {
+        "label": "contact.address",
+        "confidence": 0.7,
+        "evidence": "shipping address",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-04",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Order",
+        "field": "notes"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.35,
+        "evidence": "free text typed by the support agent",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-05",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Product",
+        "field": "details"
+      },
+      "output": {
+        "label": "contact.email",
+        "confidence": 0.8,
+        "evidence": "details Json",
+        "rationale": "Planted wrong label: the harness must count it as wrong."
+      }
+    },
+    {
+      "id": "label-amb-06",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Employee",
+        "field": "info"
+      },
+      "output": {
+        "label": "special.religious",
+        "confidence": 0.75,
+        "evidence": "religion declared",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-07",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Student",
+        "field": "data"
+      },
+      "output": {
+        "label": "children.school",
+        "confidence": 0.7,
+        "evidence": "school name",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-08",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Device",
+        "field": "payload"
+      },
+      "output": {
+        "label": "online.geolocation",
+        "confidence": 0.8,
+        "evidence": "last known GPS position",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-09",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Invoice",
+        "field": "misc"
+      },
+      "output": {
+        "label": "financial.bank-account",
+        "confidence": 0.75,
+        "evidence": "bank account for the refund",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-10",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Server",
+        "field": "attributes"
+      },
+      "output": {
+        "label": "not-personal",
+        "confidence": 0.85,
+        "evidence": "server_attributes jsonb",
+        "rationale": "Planted evidence mismatch: the quoted text is not in the declaration."
+      }
+    },
+    {
+      "id": "label-amb-11",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Paciente",
+        "field": "observacoes"
+      },
+      "output": {
+        "label": "special.health",
+        "confidence": 0.7,
+        "evidence": "anotações clínicas",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-12",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Cliente",
+        "field": "dados"
+      },
+      "output": {
+        "label": "contact.address",
+        "confidence": 0.7,
+        "evidence": "endereço de entrega",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-13",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Pedido",
+        "field": "detalhes"
+      },
+      "output": {
+        "label": "identifier.cpf",
+        "confidence": 0.8,
+        "evidence": "detalhes Json",
+        "rationale": "Planted wrong label: the harness must count it as wrong."
+      }
+    },
+    {
+      "id": "label-amb-14",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Usuario",
+        "field": "descricao"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.4,
+        "evidence": "biografia escrita pelo usuário",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-15",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Member",
+        "field": "properties"
+      },
+      "output": {
+        "label": "demographic.birth-date",
+        "confidence": 0.75,
+        "evidence": "date of birth",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-16",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Visitor",
+        "field": "meta"
+      },
+      "output": {
+        "label": "online.cookie-id",
+        "confidence": 0.7,
+        "evidence": "browser cookie identifier",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-17",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Lead",
+        "field": "custom"
+      },
+      "output": {
+        "label": "contact.phone",
+        "confidence": 0.75,
+        "evidence": "phone number",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-18",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Ticket",
+        "field": "comments"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.35,
+        "evidence": "comments String",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-19",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Setting",
+        "field": "value"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.8,
+        "evidence": "value String",
+        "rationale": "Planted wrong label: the harness must count it as wrong."
+      }
+    },
+    {
+      "id": "label-amb-20",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Applicant",
+        "field": "other"
+      },
+      "output": {
+        "label": "criminal.criminal",
+        "confidence": 0.75,
+        "evidence": "criminal record check",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-21",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Donor",
+        "field": "extras"
+      },
+      "output": {
+        "label": "special.genetic",
+        "confidence": 0.75,
+        "evidence": "genetic markers",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-22",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Voter",
+        "field": "json"
+      },
+      "output": {
+        "label": "special.political",
+        "confidence": 0.7,
+        "evidence": "party affiliation",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-23",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Photo",
+        "field": "blob"
+      },
+      "output": {
+        "label": "special.biometric",
+        "confidence": 0.7,
+        "evidence": "face template",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-24",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Shipment",
+        "field": "description"
+      },
+      "output": {
+        "label": "not-personal",
+        "confidence": 0.8,
+        "evidence": "description String",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-25",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Account",
+        "field": "outros"
+      },
+      "output": {
+        "label": "financial.salary",
+        "confidence": 0.7,
+        "evidence": "salário mensal",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    },
+    {
+      "id": "label-amb-26",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Child",
+        "field": "note"
+      },
+      "output": {
+        "label": "children.guardian",
+        "confidence": 0.7,
+        "evidence": "guardian contact",
+        "rationale": "Scripted answer equal to the expected label."
+      }
+    }
+  ]
+}

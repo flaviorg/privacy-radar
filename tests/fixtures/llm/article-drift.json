@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "scenario": "article-drift",
+  "description": "One narrative turn per citation form of spec 7.3, each citing an article outside its section's deterministic list (the facts hold the same numbers as counts), plus one spelled-out number; every section must render the placeholder.",
+  "promptHashes": {
+    "label-field.v1": "sha256:f579d6040c1b73d4bf0f5d81a499212861a288baf8dde2741fcc89f09893aa33",
+    "draft-narrative.v1": "sha256:9345516b24d1efd9481e4a5ab320c70f3afd57cf9cb7a1626560b310fc63fc6e"
+  },
+  "turns": [
+    {
+      "id": "classify-patient-obs",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Patient",
+        "field": "obs"
+      },
+      "output": {
+        "label": "special.health",
+        "confidence": 0.62,
+        "evidence": "obs Json?",
+        "rationale": "Free-form clinical observations next to diagnosis and allergies."
+      }
+    },
+    {
+      "id": "classify-appointment-extra",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Appointment",
+        "field": "extra"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.3,
+        "evidence": "extra Json?",
+        "rationale": "No neighbouring field suggests a category."
+      }
+    },
+    {
+      "id": "cite-ropa-purposes",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "ropa",
+        "section": "purposes"
+      },
+      "output": {
+        "paragraphs": [
+          "The clinic processes patient records as described in art. 5 of the regulation."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "cite-ropa-security-measures",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "ropa",
+        "section": "security-measures"
+      },
+      "output": {
+        "paragraphs": [
+          "Security measures follow Articles 9 and 10 for the stored health data."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "cite-dpia-description",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "dpia",
+        "section": "description"
+      },
+      "output": {
+        "paragraphs": [
+          "The processing is described under arts. 5 and 9 for the patient records."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "cite-dpia-necessity-proportionality",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "dpia",
+        "section": "necessity-proportionality"
+      },
+      "output": {
+        "paragraphs": [
+          "A finalidade do tratamento segue os artigos 5 e 9 para os prontuários."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "cite-dpia-measures",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "dpia",
+        "section": "measures"
+      },
+      "output": {
+        "paragraphs": [
+          "Transfers to the analytics vendor rely on Arts. 44 to 49 of the regulation."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "cite-registro-finalidades",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "registro",
+        "section": "finalidades"
+      },
+      "output": {
+        "paragraphs": [
+          "O tratamento de dados de saúde segue LGPD 11 and GDPR 9 neste sistema."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "cite-registro-seguranca",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "registro",
+        "section": "seguranca"
+      },
+      "output": {
+        "paragraphs": [
+          "As medidas de segurança seguem o § 1 para os dados armazenados."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "cite-ripd-medidas-salvaguardas",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "ripd",
+        "section": "medidas-salvaguardas"
+      },
+      "output": {
+        "paragraphs": [
+          "The clinic stores three entities with personal data of its patients."
+        ],
+        "citedFindingIds": []
+      }
+    }
+  ]
+}

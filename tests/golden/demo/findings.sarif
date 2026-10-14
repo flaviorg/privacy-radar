@@ -1,0 +1,1205 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "privacy-radar",
+          "version": "0.1.0",
+          "informationUri": "https://github.com/flaviorg/privacy-radar",
+          "fullDescription": {
+            "text": "Finds personal data in a Node/TypeScript repository and the flows that carry it into risky sinks, mapped to LGPD and GDPR articles. This is not legal advice and not a complete assessment."
+          },
+          "rules": [
+            {
+              "id": "PR-LOG",
+              "name": "Personal data reaches a log call",
+              "shortDescription": {
+                "text": "A source reaches a log sink"
+              },
+              "fullDescription": {
+                "text": "A value classified as personal data is passed to a logging call. Logs are copied to collectors, dashboards and backups, usually with weaker access control and no retention limit than the primary store. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Remove the value from the log call, log a surrogate identifier instead, or mask it before logging. Check who can read the logs and for how long they are kept.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Remove the value from the log call, log a surrogate identifier instead, or mask it before logging. Check who can read the logs and for how long they are kept.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-6",
+                  "lgpd:art-46",
+                  "gdpr:art-5",
+                  "gdpr:art-32"
+                ],
+                "precision": "medium",
+                "security-severity": "8.0"
+              }
+            },
+            {
+              "id": "PR-THIRD-PARTY",
+              "name": "Personal data is sent to a third-party host",
+              "shortDescription": {
+                "text": "A source reaches an http sink with a literal host or a non-literal URL"
+              },
+              "fullDescription": {
+                "text": "A value classified as personal data is sent in an HTTP request to a host outside the application, or to a URL the scan could not resolve. Art. 28 applies if the vendor acts as a processor; verify the vendor's role, because some vendors are independent controllers. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Confirm who operates the destination, what contract covers it and whether the data is needed. Relative first-party URLs are not reported.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Confirm who operates the destination, what contract covers it and whether the data is needed. Relative first-party URLs are not reported.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-6",
+                  "lgpd:art-46",
+                  "gdpr:art-28",
+                  "gdpr:art-32"
+                ],
+                "precision": "medium",
+                "security-severity": "5.0"
+              }
+            },
+            {
+              "id": "PR-ANALYTICS",
+              "name": "Personal data reaches an analytics SDK",
+              "shortDescription": {
+                "text": "A source reaches an analytics sink"
+              },
+              "fullDescription": {
+                "text": "A value classified as personal data is passed to an analytics or monitoring SDK. Art. 28 applies if the vendor acts as a processor; verify the vendor's role, because an analytics vendor may be an independent controller. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Send pseudonymous identifiers instead of direct identifiers, confirm the purpose and legal basis, and check the vendor's data processing terms and hosting region.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Send pseudonymous identifiers instead of direct identifiers, confirm the purpose and legal basis, and check the vendor's data processing terms and hosting region.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-6",
+                  "lgpd:art-7",
+                  "lgpd:art-46",
+                  "gdpr:art-5",
+                  "gdpr:art-6",
+                  "gdpr:art-28"
+                ],
+                "precision": "medium",
+                "security-severity": "5.0"
+              }
+            },
+            {
+              "id": "PR-FILE",
+              "name": "Personal data is written to a file",
+              "shortDescription": {
+                "text": "A source reaches a file sink"
+              },
+              "fullDescription": {
+                "text": "A value classified as personal data is written to a file by the application. Files on local disks often escape the access control, encryption and retention rules of the main database. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Check where the file lives, who can read it, whether it is encrypted and when it is deleted. Prefer the primary data store.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Check where the file lives, who can read it, whether it is encrypted and when it is deleted. Prefer the primary data store.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-6",
+                  "lgpd:art-46",
+                  "gdpr:art-5",
+                  "gdpr:art-32"
+                ],
+                "precision": "medium",
+                "security-severity": "5.0"
+              }
+            },
+            {
+              "id": "PR-URL-QUERY",
+              "name": "Personal data is placed in a URL query string",
+              "shortDescription": {
+                "text": "A source is interpolated into a URL query string"
+              },
+              "fullDescription": {
+                "text": "A value classified as personal data is written into the query string of a URL. Query strings end up in server logs, browser history, proxies and referrer headers. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Send the value in the request body or a header over TLS, or use an opaque token. Remove the value from URLs that are logged or shared.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Send the value in the request body or a header over TLS, or use an opaque token. Remove the value from URLs that are logged or shared.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-6",
+                  "lgpd:art-46",
+                  "gdpr:art-5",
+                  "gdpr:art-32"
+                ],
+                "precision": "medium",
+                "security-severity": "8.0"
+              }
+            },
+            {
+              "id": "PR-TRANSFER",
+              "name": "Personal data may be transferred internationally",
+              "shortDescription": {
+                "text": "A source reaches a known vendor whose transfer status needs a mechanism or is conditional"
+              },
+              "fullDescription": {
+                "text": "A value classified as personal data reaches a vendor that is outside the selected regime's domestic and adequate destinations, so an international transfer mechanism is needed or must be verified. Adequacy status is dated data and goes stale. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Identify the transfer mechanism (adequacy, certification, standard clauses, binding rules or consent), record it under vendors in the project config and verify the contract.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Identify the transfer mechanism (adequacy, certification, standard clauses, binding rules or consent), record it under vendors in the project config and verify the contract.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-33",
+                  "lgpd:art-34",
+                  "lgpd:art-35",
+                  "lgpd:art-36",
+                  "gdpr:art-44",
+                  "gdpr:art-45",
+                  "gdpr:art-46",
+                  "gdpr:art-47",
+                  "gdpr:art-49"
+                ],
+                "precision": "medium",
+                "security-severity": "5.0"
+              }
+            },
+            {
+              "id": "PR-PLAINTEXT-SENSITIVE",
+              "name": "Sensitive field stored without protection",
+              "shortDescription": {
+                "text": "A storage field classified as sensitive has no hash, encryption or row-level protection hint"
+              },
+              "fullDescription": {
+                "text": "A table or model field classified as sensitive personal data is a plain text-like column with no sign of hashing, encryption or row-level security. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Consider column-level encryption, a separate protected table, row-level security or tokenisation. A name suffix, a comment or an attribute that marks the field as protected clears this finding.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Consider column-level encryption, a separate protected table, row-level security or tokenisation. A name suffix, a comment or an attribute that marks the field as protected clears this finding.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-6",
+                  "lgpd:art-46",
+                  "gdpr:art-5",
+                  "gdpr:art-25",
+                  "gdpr:art-32"
+                ],
+                "precision": "medium",
+                "security-severity": "5.0"
+              }
+            },
+            {
+              "id": "PR-RETENTION",
+              "name": "Storage entity has no retention signal",
+              "shortDescription": {
+                "text": "A storage entity with personal fields has no retention signal"
+              },
+              "fullDescription": {
+                "text": "A table or model with personal data fields shows no retention mechanism: no deletion or expiry timestamp, no purge field and no retention period declared in the project config. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Define how long the data is needed, add an expiry or deletion mechanism, and declare the period under retention in the project config.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Define how long the data is needed, add an expiry or deletion mechanism, and declare the period under retention in the project config.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-6",
+                  "lgpd:art-15",
+                  "lgpd:art-16",
+                  "gdpr:art-5",
+                  "gdpr:art-30"
+                ],
+                "precision": "medium",
+                "security-severity": "5.0"
+              }
+            },
+            {
+              "id": "PR-CHILD",
+              "name": "Possible children's data indicator",
+              "shortDescription": {
+                "text": "A storage entity has a children indicator"
+              },
+              "fullDescription": {
+                "text": "A table or model has fields that suggest it may hold data about children or adolescents, such as a guardian, a school or a minor flag. The tool never asserts that a data subject is a minor. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Confirm whether minors are in scope, which legal basis applies, and whether parental consent and age checks are in place.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Confirm whether minors are in scope, which legal basis applies, and whether parental consent and age checks are in place.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-14",
+                  "gdpr:art-8",
+                  "gdpr:recital-38",
+                  "gdpr:recital-75"
+                ],
+                "precision": "medium",
+                "security-severity": "2.0"
+              }
+            },
+            {
+              "id": "PR-HARDCODED-VALUE",
+              "name": "Personal data value hard-coded in a file",
+              "shortDescription": {
+                "text": "A file holds a checksum-valid personal value or an e-mail address"
+              },
+              "fullDescription": {
+                "text": "A scanned file contains a literal that passes an identifier checksum, or an e-mail address. Real values in source control are copied to every clone, fork and backup. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Move the value to a secret store or replace it with synthetic test data. Rotate or delete the value if it is real.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Move the value to a secret store or replace it with synthetic test data. Rotate or delete the value if it is real.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-6",
+                  "lgpd:art-46",
+                  "gdpr:art-5",
+                  "gdpr:art-32"
+                ],
+                "precision": "high",
+                "security-severity": "5.0"
+              }
+            },
+            {
+              "id": "PR-AMBIGUOUS",
+              "name": "Ambiguous field labeled as personal data by the LLM",
+              "shortDescription": {
+                "text": "The LLM labeled an ambiguous field with a personal category"
+              },
+              "fullDescription": {
+                "text": "A field with a generic name was labeled by the language model as a personal data category. The label is advisory: it never changes a deterministic finding, a severity or an article. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Review the field and decide whether it holds personal data. Treat the label as a prompt for human review, not as a result.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Review the field and decide whether it holds personal data. Treat the label as a prompt for human review, not as a result.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "privacy",
+                  "lgpd:art-5",
+                  "gdpr:art-4"
+                ],
+                "precision": "low",
+                "security-severity": "2.0"
+              }
+            },
+            {
+              "id": "PR-PARSE",
+              "name": "A file could not be fully parsed",
+              "shortDescription": {
+                "text": "A file produced a parse, depth or dialect warning"
+              },
+              "fullDescription": {
+                "text": "A file could not be parsed completely, so part of it was not scanned. The scan continued with the other files. This is not legal advice and not a complete assessment."
+              },
+              "help": {
+                "text": "Fix the syntax error or exclude the file with the ignore list. Unsupported SQL dialects need a PostgreSQL export of the schema.\n\nThis is not legal advice and not a complete assessment.",
+                "markdown": "Fix the syntax error or exclude the file with the ignore list. Unsupported SQL dialects need a PostgreSQL export of the schema.\n\nThis is not legal advice and not a complete assessment."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "privacy"
+                ],
+                "precision": "medium",
+                "security-severity": "2.0"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "PR-ANALYTICS",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "identifier.cpf and special.health reach the analytics call mixpanel.track to Mixpanel (US); art. 28 applies if the vendor acts as a processor; verify the vendor's role (LGPD 6 I-III, 7, 11, 33, 46; GDPR 5(1)(b)(c), 6, 9(1), 28, 44-46)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/analytics.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 3
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "75710fb636eea142d07d2f756e883038"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 I",
+                "art. 6 II",
+                "art. 6 III",
+                "art. 7",
+                "art. 11",
+                "art. 33",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(b)",
+                "art. 5(1)(c)",
+                "art. 6",
+                "art. 9(1)",
+                "art. 28",
+                "art. 44",
+                "art. 45",
+                "art. 46"
+              ]
+            },
+            "confidence": 0.65,
+            "origin": "deterministic",
+            "categories": [
+              "identifier.cpf",
+              "special.health"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-TRANSFER",
+          "ruleIndex": 5,
+          "level": "error",
+          "message": {
+            "text": "International transfer of identifier.cpf and special.health to Mixpanel (US): LGPD needs-mechanism, GDPR conditional; status as of 2026-10-08; verify (LGPD 33, 33 II, 33 VIII, 34-36; GDPR 44-47, 49)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/analytics.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 3
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "523d4d87c8f84b318e18a09cf53e9f5e"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 33",
+                "art. 33 II",
+                "art. 33 VIII",
+                "art. 34",
+                "art. 35",
+                "art. 36"
+              ],
+              "gdpr": [
+                "art. 44",
+                "art. 45",
+                "art. 46",
+                "art. 47",
+                "art. 49"
+              ]
+            },
+            "confidence": 0.65,
+            "origin": "deterministic",
+            "categories": [
+              "identifier.cpf",
+              "special.health"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-URL-QUERY",
+          "ruleIndex": 4,
+          "level": "error",
+          "message": {
+            "text": "identifier.nif-pt reaches the URL query parameter \"nif\" (LGPD 6 VII, 46; GDPR 5(1)(f), 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/appointments.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 62
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "1ebfd8cb65845fefd2c4fefb55c1aad3"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 VII",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(f)",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.6,
+            "origin": "deterministic",
+            "categories": [
+              "identifier.nif-pt"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-LOG",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "children.guardian, contact.email, contact.phone and 8 more reach the log call console.info (LGPD 6 VII, 11, 14, 46; GDPR 5(1)(f), 8, 9(1), 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/patients.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 3
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a801d7df93b2a2c218f5ff666722324e"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 VII",
+                "art. 11",
+                "art. 14",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(f)",
+                "art. 8",
+                "art. 9(1)",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.75,
+            "origin": "deterministic",
+            "categories": [
+              "children.guardian",
+              "contact.email",
+              "contact.phone",
+              "demographic.birth-date",
+              "identifier.codice-fiscale-it",
+              "identifier.cpf",
+              "identifier.dni-es",
+              "identifier.nif-pt",
+              "name.full-name",
+              "name.mother-name",
+              "special.health"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-LOG",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "identifier.cpf reaches the log call logger.debug (LGPD 6 VII, 46; GDPR 5(1)(f), 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/patients.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 3
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "d62cb6e822ab20e2e58bd34d7fdea5f0"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 VII",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(f)",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.6,
+            "origin": "deterministic",
+            "categories": [
+              "identifier.cpf"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-HARDCODED-VALUE",
+          "ruleIndex": 9,
+          "level": "warning",
+          "message": {
+            "text": "6 hard-coded personal values (identifier.codice-fiscale-it, identifier.cpf, identifier.dni-es, identifier.nie-es, identifier.nif-pt); move them to a secret store or synthetic test data (LGPD 6 III, 6 VII, 46; GDPR 5(1)(c)(f), 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/migrations/001_init.sql",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 43,
+                  "startColumn": 14
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a6cc4ffa6e117e501246fa3a8808d634"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 III",
+                "art. 6 VII",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(c)",
+                "art. 5(1)(f)",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.9,
+            "origin": "deterministic",
+            "categories": [
+              "identifier.codice-fiscale-it",
+              "identifier.cpf",
+              "identifier.dni-es",
+              "identifier.nie-es",
+              "identifier.nif-pt"
+            ],
+            "precision": "high"
+          }
+        },
+        {
+          "ruleId": "PR-RETENTION",
+          "ruleIndex": 7,
+          "level": "warning",
+          "message": {
+            "text": "Entity Patient stores personal data (contact.email, contact.phone, demographic.birth-date and 7 more) with no retention signal (no deleted_at, expires_at, retention, purge or anonymized_at field and no config retention entry) (LGPD 6 III, 15, 16; GDPR 5(1)(e), 30(1))."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/prisma/schema.prisma",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 7
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "657cf280cb5109836e135a182868a24d"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 III",
+                "art. 15",
+                "art. 16"
+              ],
+              "gdpr": [
+                "art. 5(1)(e)",
+                "art. 30(1)"
+              ]
+            },
+            "confidence": 0.75,
+            "origin": "deterministic",
+            "categories": [
+              "special.health"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-PLAINTEXT-SENSITIVE",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Field Patient.diagnosis (special.health) is stored as plain text; encrypt, hash or restrict it (LGPD 6 VII, 11, 46; GDPR 5(1)(f), 9(1), 25, 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/prisma/schema.prisma",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 3
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "f4843659e367fa7c7126993fd5aa3a93"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 VII",
+                "art. 11",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(f)",
+                "art. 9(1)",
+                "art. 25",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.6,
+            "origin": "deterministic",
+            "categories": [
+              "special.health"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-PLAINTEXT-SENSITIVE",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Field Patient.allergies (special.health) is stored as plain text; encrypt, hash or restrict it (LGPD 6 VII, 11, 46; GDPR 5(1)(f), 9(1), 25, 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/prisma/schema.prisma",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 3
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "c182bf867fe39ed04629daa91c55ad63"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 VII",
+                "art. 11",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(f)",
+                "art. 9(1)",
+                "art. 25",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.6,
+            "origin": "deterministic",
+            "categories": [
+              "special.health"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-PLAINTEXT-SENSITIVE",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Field Patient.bloodType (special.health) is stored as plain text; encrypt, hash or restrict it (LGPD 6 VII, 11, 46; GDPR 5(1)(f), 9(1), 25, 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/prisma/schema.prisma",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 3
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "434fb7038dc0ea1bc12681553b903db4"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 VII",
+                "art. 11",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(f)",
+                "art. 9(1)",
+                "art. 25",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.6,
+            "origin": "deterministic",
+            "categories": [
+              "special.health"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-THIRD-PARTY",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "contact.email reaches the HTTP call fetch to api.mixpanel.com (Mixpanel, US) through the local binding payload; art. 28 applies if the vendor acts as a processor; verify the vendor's role (LGPD 6 VII, 33, 46; GDPR 28, 32, 44-46)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/analytics.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 9
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "625c0e6ca12c93c025cf3cf374acc4e9"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 VII",
+                "art. 33",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 28",
+                "art. 32",
+                "art. 44",
+                "art. 45",
+                "art. 46"
+              ]
+            },
+            "confidence": 0.6,
+            "origin": "deterministic",
+            "categories": [
+              "contact.email"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-TRANSFER",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "International transfer of contact.email to api.mixpanel.com (Mixpanel, US): LGPD needs-mechanism, GDPR conditional; status as of 2026-10-08; verify (LGPD 33, 33 II, 33 VIII, 34-36; GDPR 44-47, 49)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/analytics.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 9
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "0fa0612e8403c1f0f8befc93e29ad54e"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 33",
+                "art. 33 II",
+                "art. 33 VIII",
+                "art. 34",
+                "art. 35",
+                "art. 36"
+              ],
+              "gdpr": [
+                "art. 44",
+                "art. 45",
+                "art. 46",
+                "art. 47",
+                "art. 49"
+              ]
+            },
+            "confidence": 0.6,
+            "origin": "deterministic",
+            "categories": [
+              "contact.email"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-THIRD-PARTY",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "identifier.nif-pt reaches the HTTP call fetch to sms.example-vendor.invalid (unknown destination); art. 28 applies if the vendor acts as a processor; verify the vendor's role (LGPD 6 VII, 46; GDPR 28, 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/appointments.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 9
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "03c1b747fbda688641475982d7859456"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 VII",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 28",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.6,
+            "origin": "deterministic",
+            "categories": [
+              "identifier.nif-pt"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-FILE",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "financial.iban and name.full-name reach the file write fs.appendFileSync (LGPD 6 VII, 46; GDPR 5(1)(f), 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/billing.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 3
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "abe3990272c6279c9069e8b9b781f79b"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 VII",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(f)",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.6,
+            "origin": "deterministic",
+            "categories": [
+              "financial.iban",
+              "name.full-name"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-HARDCODED-VALUE",
+          "ruleIndex": 9,
+          "level": "warning",
+          "message": {
+            "text": "9 hard-coded personal values (contact.email, financial.card-pan, financial.iban, identifier.bsn-nl, identifier.cpf, identifier.nir-fr, identifier.steuer-id-de); move them to a secret store or synthetic test data (LGPD 6 III, 6 VII, 46; GDPR 5(1)(c)(f), 32)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/src/server.ts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "206f6fd6b0f0ab0f2d53dfd899a0dfb3"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 III",
+                "art. 6 VII",
+                "art. 46"
+              ],
+              "gdpr": [
+                "art. 5(1)(c)",
+                "art. 5(1)(f)",
+                "art. 32"
+              ]
+            },
+            "confidence": 0.9,
+            "origin": "deterministic",
+            "categories": [
+              "contact.email",
+              "financial.card-pan",
+              "financial.iban",
+              "identifier.bsn-nl",
+              "identifier.cpf",
+              "identifier.nir-fr",
+              "identifier.steuer-id-de"
+            ],
+            "precision": "high"
+          }
+        },
+        {
+          "ruleId": "PR-CHILD",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "Entity Patient has children indicators (children.guardian and demographic.birth-date); minority is not asserted, verify whether children's data is processed (LGPD 14, 14 §1; GDPR 8, recital 38, recital 75)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/prisma/schema.prisma",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 7
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a564f29cec7a0c9949a348662e726da2"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 14",
+                "art. 14 §1"
+              ],
+              "gdpr": [
+                "art. 8",
+                "recital 38",
+                "recital 75"
+              ]
+            },
+            "confidence": 0.75,
+            "origin": "deterministic",
+            "categories": [
+              "children.guardian"
+            ],
+            "precision": "medium"
+          }
+        },
+        {
+          "ruleId": "PR-AMBIGUOUS",
+          "ruleIndex": 10,
+          "level": "note",
+          "message": {
+            "text": "Ambiguous field Patient.obs was labeled special.health (0.62) by the LLM; advisory, review the field (LGPD 5 I; GDPR 4(1))."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/prisma/schema.prisma",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 3
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "06707e287ae689d8d8f70e0f3609d158"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 5 I"
+              ],
+              "gdpr": [
+                "art. 4(1)"
+              ]
+            },
+            "confidence": 0.62,
+            "origin": "llm",
+            "categories": [
+              "special.health"
+            ],
+            "precision": "low"
+          }
+        },
+        {
+          "ruleId": "PR-RETENTION",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Entity Appointment stores personal data (contact.phone) with no retention signal (no deleted_at, expires_at, retention, purge or anonymized_at field and no config retention entry) (LGPD 6 III, 15, 16; GDPR 5(1)(e), 30(1))."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fixtures/telehealth-clinic/prisma/schema.prisma",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 7
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "bf414ef5e5857c9024b1961c00e1d495"
+          },
+          "properties": {
+            "articles": {
+              "lgpd": [
+                "art. 6 III",
+                "art. 15",
+                "art. 16"
+              ],
+              "gdpr": [
+                "art. 5(1)(e)",
+                "art. 30(1)"
+              ]
+            },
+            "confidence": 0.5,
+            "origin": "deterministic",
+            "categories": [
+              "contact.phone"
+            ],
+            "precision": "medium"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+#!/bin/sh
+# Blocks a commit when the types, the unit tests or the secret scan fail. Installed with `npm run setup:hooks`.
+set -e
+cd "$(dirname "$0")/.."
+npm run --silent typecheck
+npm run --silent test:unit
+npm run --silent check:secrets

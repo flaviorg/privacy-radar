@@ -1,0 +1,507 @@
+{
+  "rules": [
+    {
+      "id": "PR-LOG",
+      "title": "Personal data reaches a log call",
+      "shortDescription": "A source reaches a log sink",
+      "fullDescription": "A value classified as personal data is passed to a logging call. Logs are copied to collectors, dashboards and backups, usually with weaker access control and no retention limit than the primary store.",
+      "helpMarkdown": "Remove the value from the log call, log a surrogate identifier instead, or mask it before logging. Check who can read the logs and for how long they are kept.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "matrix",
+      "sarifLevel": "error",
+      "securitySeverity": "8.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-6",
+        "lgpd:art-46",
+        "gdpr:art-5",
+        "gdpr:art-32"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "6 VII",
+            "46"
+          ],
+          "special": [
+            "11"
+          ],
+          "children": [
+            "14"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "5(1)(f)",
+            "32"
+          ],
+          "special": [
+            "9(1)"
+          ],
+          "criminal": [
+            "10"
+          ],
+          "children": [
+            "8"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    },
+    {
+      "id": "PR-THIRD-PARTY",
+      "title": "Personal data is sent to a third-party host",
+      "shortDescription": "A source reaches an http sink with a literal host or a non-literal URL",
+      "fullDescription": "A value classified as personal data is sent in an HTTP request to a host outside the application, or to a URL the scan could not resolve. Art. 28 applies if the vendor acts as a processor; verify the vendor's role, because some vendors are independent controllers.",
+      "helpMarkdown": "Confirm who operates the destination, what contract covers it and whether the data is needed. Relative first-party URLs are not reported.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "matrix; note when the host is unresolved",
+      "sarifLevel": "warning",
+      "securitySeverity": "5.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-6",
+        "lgpd:art-46",
+        "gdpr:art-28",
+        "gdpr:art-32"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "6 VII",
+            "46"
+          ],
+          "special": [
+            "11"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "28",
+            "32"
+          ],
+          "special": [
+            "9(1)"
+          ],
+          "criminal": [
+            "10"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [
+          "33"
+        ],
+        "gdpr": [
+          "44",
+          "45",
+          "46"
+        ]
+      }
+    },
+    {
+      "id": "PR-ANALYTICS",
+      "title": "Personal data reaches an analytics SDK",
+      "shortDescription": "A source reaches an analytics sink",
+      "fullDescription": "A value classified as personal data is passed to an analytics or monitoring SDK. Art. 28 applies if the vendor acts as a processor; verify the vendor's role, because an analytics vendor may be an independent controller.",
+      "helpMarkdown": "Send pseudonymous identifiers instead of direct identifiers, confirm the purpose and legal basis, and check the vendor's data processing terms and hosting region.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "matrix",
+      "sarifLevel": "warning",
+      "securitySeverity": "5.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-6",
+        "lgpd:art-7",
+        "lgpd:art-46",
+        "gdpr:art-5",
+        "gdpr:art-6",
+        "gdpr:art-28"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "6 I",
+            "6 II",
+            "6 III",
+            "7",
+            "46"
+          ],
+          "special": [
+            "11"
+          ],
+          "children": [
+            "14"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "5(1)(b)",
+            "5(1)(c)",
+            "6",
+            "28"
+          ],
+          "special": [
+            "9(1)"
+          ],
+          "criminal": [
+            "10"
+          ],
+          "children": [
+            "8"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [
+          "33"
+        ],
+        "gdpr": [
+          "44",
+          "45",
+          "46"
+        ]
+      }
+    },
+    {
+      "id": "PR-FILE",
+      "title": "Personal data is written to a file",
+      "shortDescription": "A source reaches a file sink",
+      "fullDescription": "A value classified as personal data is written to a file by the application. Files on local disks often escape the access control, encryption and retention rules of the main database.",
+      "helpMarkdown": "Check where the file lives, who can read it, whether it is encrypted and when it is deleted. Prefer the primary data store.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "matrix",
+      "sarifLevel": "warning",
+      "securitySeverity": "5.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-6",
+        "lgpd:art-46",
+        "gdpr:art-5",
+        "gdpr:art-32"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "6 VII",
+            "46"
+          ],
+          "special": [
+            "11"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "5(1)(f)",
+            "32"
+          ],
+          "special": [
+            "9(1)"
+          ],
+          "criminal": [
+            "10"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    },
+    {
+      "id": "PR-URL-QUERY",
+      "title": "Personal data is placed in a URL query string",
+      "shortDescription": "A source is interpolated into a URL query string",
+      "fullDescription": "A value classified as personal data is written into the query string of a URL. Query strings end up in server logs, browser history, proxies and referrer headers.",
+      "helpMarkdown": "Send the value in the request body or a header over TLS, or use an opaque token. Remove the value from URLs that are logged or shared.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "matrix; error for identifiers and sensitive data",
+      "sarifLevel": "error",
+      "securitySeverity": "8.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-6",
+        "lgpd:art-46",
+        "gdpr:art-5",
+        "gdpr:art-32"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "6 VII",
+            "46"
+          ],
+          "special": [
+            "11"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "5(1)(f)",
+            "32"
+          ],
+          "special": [
+            "9(1)"
+          ],
+          "criminal": [
+            "10"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    },
+    {
+      "id": "PR-TRANSFER",
+      "title": "Personal data may be transferred internationally",
+      "shortDescription": "A source reaches a known vendor whose transfer status needs a mechanism or is conditional",
+      "fullDescription": "A value classified as personal data reaches a vendor that is outside the selected regime's domestic and adequate destinations, so an international transfer mechanism is needed or must be verified. Adequacy status is dated data and goes stale.",
+      "helpMarkdown": "Identify the transfer mechanism (adequacy, certification, standard clauses, binding rules or consent), record it under vendors in the project config and verify the contract.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "warning; error when a sensitive category reaches that sink",
+      "sarifLevel": "warning",
+      "securitySeverity": "5.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-33",
+        "lgpd:art-34",
+        "lgpd:art-35",
+        "lgpd:art-36",
+        "gdpr:art-44",
+        "gdpr:art-45",
+        "gdpr:art-46",
+        "gdpr:art-47",
+        "gdpr:art-49"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "33",
+            "33 II",
+            "33 VIII",
+            "34",
+            "35",
+            "36"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "44",
+            "45",
+            "46",
+            "47",
+            "49"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    },
+    {
+      "id": "PR-PLAINTEXT-SENSITIVE",
+      "title": "Sensitive field stored without protection",
+      "shortDescription": "A storage field classified as sensitive has no hash, encryption or row-level protection hint",
+      "fullDescription": "A table or model field classified as sensitive personal data is a plain text-like column with no sign of hashing, encryption or row-level security.",
+      "helpMarkdown": "Consider column-level encryption, a separate protected table, row-level security or tokenisation. A name suffix, a comment or an attribute that marks the field as protected clears this finding.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "warning",
+      "sarifLevel": "warning",
+      "securitySeverity": "5.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-6",
+        "lgpd:art-46",
+        "gdpr:art-5",
+        "gdpr:art-25",
+        "gdpr:art-32"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "6 VII",
+            "46"
+          ],
+          "special": [
+            "11"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "5(1)(f)",
+            "25",
+            "32"
+          ],
+          "special": [
+            "9(1)"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    },
+    {
+      "id": "PR-RETENTION",
+      "title": "Storage entity has no retention signal",
+      "shortDescription": "A storage entity with personal fields has no retention signal",
+      "fullDescription": "A table or model with personal data fields shows no retention mechanism: no deletion or expiry timestamp, no purge field and no retention period declared in the project config.",
+      "helpMarkdown": "Define how long the data is needed, add an expiry or deletion mechanism, and declare the period under retention in the project config.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "warning when the entity has a sensitive field, else note",
+      "sarifLevel": "warning",
+      "securitySeverity": "5.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-6",
+        "lgpd:art-15",
+        "lgpd:art-16",
+        "gdpr:art-5",
+        "gdpr:art-30"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "6 III",
+            "15",
+            "16"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "5(1)(e)",
+            "30(1)"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    },
+    {
+      "id": "PR-CHILD",
+      "title": "Possible children's data indicator",
+      "shortDescription": "A storage entity has a children indicator",
+      "fullDescription": "A table or model has fields that suggest it may hold data about children or adolescents, such as a guardian, a school or a minor flag. The tool never asserts that a data subject is a minor.",
+      "helpMarkdown": "Confirm whether minors are in scope, which legal basis applies, and whether parental consent and age checks are in place.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "note",
+      "sarifLevel": "note",
+      "securitySeverity": "2.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-14",
+        "gdpr:art-8",
+        "gdpr:recital-38",
+        "gdpr:recital-75"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "14",
+            "14 §1"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "8",
+            "recital 38",
+            "recital 75"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    },
+    {
+      "id": "PR-HARDCODED-VALUE",
+      "title": "Personal data value hard-coded in a file",
+      "shortDescription": "A file holds a checksum-valid personal value or an e-mail address",
+      "fullDescription": "A scanned file contains a literal that passes an identifier checksum, or an e-mail address. Real values in source control are copied to every clone, fork and backup.",
+      "helpMarkdown": "Move the value to a secret store or replace it with synthetic test data. Rotate or delete the value if it is real.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "warning",
+      "sarifLevel": "warning",
+      "securitySeverity": "5.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-6",
+        "lgpd:art-46",
+        "gdpr:art-5",
+        "gdpr:art-32"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "6 III",
+            "6 VII",
+            "46"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "5(1)(c)",
+            "5(1)(f)",
+            "32"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    },
+    {
+      "id": "PR-AMBIGUOUS",
+      "title": "Ambiguous field labeled as personal data by the LLM",
+      "shortDescription": "The LLM labeled an ambiguous field with a personal category",
+      "fullDescription": "A field with a generic name was labeled by the language model as a personal data category. The label is advisory: it never changes a deterministic finding, a severity or an article.",
+      "helpMarkdown": "Review the field and decide whether it holds personal data. Treat the label as a prompt for human review, not as a result.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "note; confidence capped at medium",
+      "sarifLevel": "note",
+      "securitySeverity": "2.0",
+      "tags": [
+        "privacy",
+        "lgpd:art-5",
+        "gdpr:art-4"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {
+          "*": [
+            "5 I"
+          ]
+        },
+        "gdpr": {
+          "*": [
+            "4(1)"
+          ]
+        }
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    },
+    {
+      "id": "PR-PARSE",
+      "title": "A file could not be fully parsed",
+      "shortDescription": "A file produced a parse, depth or dialect warning",
+      "fullDescription": "A file could not be parsed completely, so part of it was not scanned. The scan continued with the other files.",
+      "helpMarkdown": "Fix the syntax error or exclude the file with the ignore list. Unsupported SQL dialects need a PostgreSQL export of the schema.\n\nThis is not legal advice and not a complete assessment.",
+      "severity": "note",
+      "sarifLevel": "note",
+      "securitySeverity": "2.0",
+      "tags": [
+        "privacy"
+      ],
+      "articlesByCategoryGroup": {
+        "lgpd": {},
+        "gdpr": {}
+      },
+      "articlesWhenTransfer": {
+        "lgpd": [],
+        "gdpr": []
+      }
+    }
+  ]
+}

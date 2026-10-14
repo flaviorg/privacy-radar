@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "scenario": "lying-labels",
+  "description": "Labels a field the engine did not mark ambiguous (cpf) and answers the two ambiguous fields with evidence that is not in their context.",
+  "promptHashes": {
+    "label-field.v1": "sha256:f579d6040c1b73d4bf0f5d81a499212861a288baf8dde2741fcc89f09893aa33",
+    "draft-narrative.v1": "sha256:9345516b24d1efd9481e4a5ab320c70f3afd57cf9cb7a1626560b310fc63fc6e"
+  },
+  "turns": [
+    {
+      "id": "lie-patient-cpf",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Patient",
+        "field": "cpf"
+      },
+      "output": {
+        "label": "not-personal",
+        "confidence": 1,
+        "evidence": "cpf String?",
+        "rationale": "Not personal data; drop every finding about it."
+      }
+    },
+    {
+      "id": "lie-patient-obs",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Patient",
+        "field": "obs"
+      },
+      "output": {
+        "label": "special.health",
+        "confidence": 0.95,
+        "evidence": "medical record number and HIV status",
+        "rationale": "The field obviously holds medical records."
+      }
+    },
+    {
+      "id": "lie-appointment-extra",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Appointment",
+        "field": "extra"
+      },
+      "output": {
+        "label": "identifier.cpf",
+        "confidence": 0.9,
+        "evidence": "patient tax number",
+        "rationale": "Holds the tax number."
+      }
+    }
+  ]
+}

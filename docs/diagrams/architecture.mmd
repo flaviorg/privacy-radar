@@ -1,0 +1,30 @@
+flowchart LR
+  subgraph IN["Inputs"]
+    TS["TS / JS / TSX files"]
+    SQL["SQL migrations (DDL)"]
+    PR["schema.prisma"]
+    CFG["privacy-radar.config.json"]
+  end
+  subgraph DET["Deterministic zone (decides, measures, verifies)"]
+    CAT["catalog/: categories, terms (pt en es), validators, vendors, articles, adequacy"]
+    SC["sources/: Babel AST walker, SQL, Prisma tokenizer"]
+    FL["flows/: sinks and one-hop intra-procedural reach"]
+    EN["engine/: rules, severity matrix, confidence, suppressions, mergeFindings"]
+    OUT["output/: findings JSON, SARIF 2.1.0, inventory, documents, PR comment"]
+  end
+  subgraph LLM["LLM zone (proposes only)"]
+    FK["fake provider (default, scripted fixtures)"]
+    RL["openai-compatible provider (fetch, env-gated)"]
+    CL["labelAmbiguousField: label ambiguous fields with confidence"]
+    NR["draftNarrative: prose for RoPA / DPIA / registro / RIPD"]
+  end
+  TS & SQL & PR --> SC
+  CFG --> EN
+  CAT --> SC
+  SC --> FL --> EN
+  EN -- "ambiguous fields only" --> CL
+  EN -- "inventory + findings as evidence" --> NR
+  FK & RL --> CL & NR
+  CL -- "Zod-validated labels, never suppress" --> EN
+  NR -- "Zod-validated prose, numbers from code" --> OUT
+  EN --> OUT

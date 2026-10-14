@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "vendors": {
+    "api.mixpanel.com": { "mechanism": "scc", "notes": "SCCs signed" }
+  }
+}

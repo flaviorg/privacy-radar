@@ -1,0 +1,260 @@
+{
+  "regime": "lgpd",
+  "articles": [
+    {
+      "regime": "lgpd",
+      "article": "5",
+      "item": "I",
+      "title": "Personal data (definition)",
+      "summary": "Information relating to an identified or identifiable natural person.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "5",
+      "item": "II",
+      "title": "Sensitive personal data (definition)",
+      "summary": "Racial or ethnic origin, religious belief, political opinion, union or religious, philosophical or political membership, health, sex life, genetic or biometric data linked to a person.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "5",
+      "item": "XVII",
+      "title": "Data protection impact report (RIPD)",
+      "summary": "Controller documentation describing processing that may risk civil liberties and fundamental rights, with the measures, safeguards and risk mitigation mechanisms adopted.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "6",
+      "item": "I",
+      "title": "Purpose principle",
+      "summary": "Processing serves legitimate, specific, explicit purposes informed to the data subject, with no later processing that is incompatible with them.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-14",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "6",
+      "item": "II",
+      "title": "Adequacy principle",
+      "summary": "Processing must be compatible with the purposes informed to the data subject, according to the context of the processing.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-14",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "6",
+      "item": "III",
+      "title": "Necessity principle",
+      "summary": "Processing is limited to the minimum needed for its purposes, covering only relevant, proportionate and non-excessive data.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "6",
+      "item": "VII",
+      "title": "Security principle",
+      "summary": "Technical and administrative measures protect personal data from unauthorised access and from accidental or unlawful destruction, loss, alteration, communication or dissemination.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "7",
+      "title": "Legal bases for processing",
+      "summary": "Lists the ten legal bases for processing personal data, from consent to credit protection; item VIII covers health protection by health professionals or health services.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "11",
+      "title": "Legal bases for sensitive data",
+      "summary": "Sensitive data may be processed with specific, prominent consent or, without consent, only in the listed cases such as legal duty, life protection or health protection.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "14",
+      "title": "Children's and adolescents' data",
+      "summary": "Processing the data of children and adolescents must serve their best interest.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "14",
+      "item": "§1",
+      "title": "Parental consent for children's data",
+      "summary": "Processing a child's data requires specific and prominent consent from at least one parent or legal guardian.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "15",
+      "title": "End of processing",
+      "summary": "Processing ends when its purpose is reached, the data are no longer needed, the data subject withdraws consent, or the authority orders it.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "16",
+      "title": "Deletion after processing ends",
+      "summary": "Data are deleted after processing ends, except for legal duty, research, permitted transfer to a third party, or anonymised use by the controller.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "18",
+      "title": "Data subject rights",
+      "summary": "The data subject may obtain confirmation, access, correction, anonymisation or deletion, portability, information on sharing and revocation of consent.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "33",
+      "title": "International transfer",
+      "summary": "International transfer of personal data is allowed only in the listed cases, such as adequate countries, contractual guarantees, consent or authorisation by the authority.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "33",
+      "item": "II",
+      "title": "Transfer with guarantees",
+      "summary": "Transfer is allowed when the controller offers and proves guarantees: specific clauses, standard clauses, global corporate rules, seals, certificates or codes of conduct.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "33",
+      "item": "VIII",
+      "title": "Transfer with consent",
+      "summary": "Transfer is allowed with the data subject's specific and prominent consent, after prior information on the international nature of the operation.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "34",
+      "title": "Assessment of the foreign protection level",
+      "summary": "The authority assesses the level of data protection of the foreign country or organisation, weighing legislation, the nature of the data, safeguards and other circumstances.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "35",
+      "title": "Standard and specific clauses",
+      "summary": "The authority defines the content of standard contractual clauses and verifies specific clauses, global corporate rules, seals and certificates.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "36",
+      "title": "Changes in guarantees",
+      "summary": "Changes to the guarantees presented for an international transfer must be communicated to the authority.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "37",
+      "title": "Record of processing operations",
+      "summary": "Controller and operator keep a record of the processing operations they carry out, especially when based on legitimate interest.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "38",
+      "title": "Impact report on request",
+      "summary": "The authority may order the controller to prepare a data protection impact report, including for sensitive data, under its regulation.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "38",
+      "item": "parágrafo único",
+      "title": "Minimum content of the impact report",
+      "summary": "The report describes the data collected, the methodology for collection and information security, and the controller's analysis of safeguards and risk mitigation.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "41",
+      "title": "Data protection officer",
+      "summary": "The controller appoints an officer (encarregado) and publicly discloses the officer's identity and contact details.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "46",
+      "title": "Security measures",
+      "summary": "Controllers and operators adopt technical and administrative measures to protect personal data from unauthorised access and from accidental or unlawful incidents.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "48",
+      "title": "Incident communication",
+      "summary": "The controller notifies the authority and the data subject of a security incident that may cause relevant risk or damage.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    },
+    {
+      "regime": "lgpd",
+      "article": "52",
+      "item": "II",
+      "title": "Simple fine",
+      "summary": "Administrative sanction: a simple fine of up to 2% of the revenue in Brazil in the last fiscal year, capped at R$ 50,000,000.00 per infraction.",
+      "sourceUrl": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "official"
+    }
+  ]
+}

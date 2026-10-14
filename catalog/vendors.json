@@ -1,0 +1,352 @@
+{
+  "checkedOn": "2026-10-08",
+  "source": "Vendor list of the design spec (section 5.2); domains, headquarters and EU region availability follow each vendor's public site (per-entry source). A heuristic starting point: config.vendors overrides it.",
+  "vendors": [
+    {
+      "vendor": "Mixpanel",
+      "domains": [
+        "mixpanel.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "analytics",
+      "checkedOn": "2026-10-08",
+      "source": "https://mixpanel.com"
+    },
+    {
+      "vendor": "Segment",
+      "domains": [
+        "segment.io",
+        "segment.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "analytics",
+      "checkedOn": "2026-10-08",
+      "source": "https://segment.com"
+    },
+    {
+      "vendor": "Amplitude",
+      "domains": [
+        "amplitude.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "analytics",
+      "checkedOn": "2026-10-08",
+      "source": "https://amplitude.com"
+    },
+    {
+      "vendor": "PostHog",
+      "domains": [
+        "posthog.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": true,
+      "category": "analytics",
+      "checkedOn": "2026-10-08",
+      "source": "https://posthog.com"
+    },
+    {
+      "vendor": "Google Analytics",
+      "domains": [
+        "google-analytics.com",
+        "analytics.google.com",
+        "googletagmanager.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "analytics",
+      "checkedOn": "2026-10-08",
+      "source": "https://marketingplatform.google.com/about/analytics/"
+    },
+    {
+      "vendor": "Meta Pixel",
+      "domains": [
+        "facebook.net",
+        "facebook.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "analytics",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.facebook.com/business/tools/meta-pixel"
+    },
+    {
+      "vendor": "Hotjar",
+      "domains": [
+        "hotjar.com",
+        "hotjar.io"
+      ],
+      "hqCountry": "MT",
+      "euRegionAvailable": true,
+      "category": "analytics",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.hotjar.com"
+    },
+    {
+      "vendor": "Sentry",
+      "domains": [
+        "sentry.io"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": true,
+      "category": "error-monitoring",
+      "checkedOn": "2026-10-08",
+      "source": "https://sentry.io"
+    },
+    {
+      "vendor": "Datadog",
+      "domains": [
+        "datadoghq.com",
+        "datadoghq.eu"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": true,
+      "category": "error-monitoring",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.datadoghq.com"
+    },
+    {
+      "vendor": "New Relic",
+      "domains": [
+        "newrelic.com",
+        "nr-data.net"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "error-monitoring",
+      "checkedOn": "2026-10-08",
+      "source": "https://newrelic.com"
+    },
+    {
+      "vendor": "HubSpot",
+      "domains": [
+        "hubspot.com",
+        "hubapi.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": true,
+      "category": "crm",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.hubspot.com"
+    },
+    {
+      "vendor": "Intercom",
+      "domains": [
+        "intercom.io",
+        "intercom.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "messaging",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.intercom.com"
+    },
+    {
+      "vendor": "Mailchimp",
+      "domains": [
+        "mailchimp.com",
+        "mandrillapp.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "email",
+      "checkedOn": "2026-10-08",
+      "source": "https://mailchimp.com"
+    },
+    {
+      "vendor": "SendGrid",
+      "domains": [
+        "sendgrid.com",
+        "sendgrid.net"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "email",
+      "checkedOn": "2026-10-08",
+      "source": "https://sendgrid.com"
+    },
+    {
+      "vendor": "Twilio",
+      "domains": [
+        "twilio.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "messaging",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.twilio.com"
+    },
+    {
+      "vendor": "Stripe",
+      "domains": [
+        "stripe.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "payments",
+      "checkedOn": "2026-10-08",
+      "source": "https://stripe.com"
+    },
+    {
+      "vendor": "PayPal",
+      "domains": [
+        "paypal.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "payments",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.paypal.com"
+    },
+    {
+      "vendor": "Braintree",
+      "domains": [
+        "braintreegateway.com",
+        "braintree-api.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "payments",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.braintreepayments.com"
+    },
+    {
+      "vendor": "Zendesk",
+      "domains": [
+        "zendesk.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "crm",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.zendesk.com"
+    },
+    {
+      "vendor": "Salesforce",
+      "domains": [
+        "salesforce.com",
+        "force.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "crm",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.salesforce.com"
+    },
+    {
+      "vendor": "AWS S3",
+      "domains": [
+        "amazonaws.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": true,
+      "category": "storage",
+      "checkedOn": "2026-10-08",
+      "source": "https://aws.amazon.com/s3/"
+    },
+    {
+      "vendor": "Google Cloud Storage",
+      "domains": [
+        "storage.googleapis.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": true,
+      "category": "storage",
+      "checkedOn": "2026-10-08",
+      "source": "https://cloud.google.com/storage"
+    },
+    {
+      "vendor": "Azure Blob Storage",
+      "domains": [
+        "blob.core.windows.net"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": true,
+      "category": "storage",
+      "checkedOn": "2026-10-08",
+      "source": "https://azure.microsoft.com/products/storage/blobs"
+    },
+    {
+      "vendor": "OpenAI",
+      "domains": [
+        "openai.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "llm",
+      "checkedOn": "2026-10-08",
+      "source": "https://openai.com"
+    },
+    {
+      "vendor": "Anthropic",
+      "domains": [
+        "anthropic.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "llm",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.anthropic.com"
+    },
+    {
+      "vendor": "Cloudflare",
+      "domains": [
+        "cloudflare.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "other",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.cloudflare.com"
+    },
+    {
+      "vendor": "Algolia",
+      "domains": [
+        "algolia.net",
+        "algolianet.com",
+        "algolia.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": true,
+      "category": "other",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.algolia.com"
+    },
+    {
+      "vendor": "Auth0",
+      "domains": [
+        "auth0.com",
+        "okta.com"
+      ],
+      "hqCountry": "US",
+      "euRegionAvailable": false,
+      "category": "other",
+      "checkedOn": "2026-10-08",
+      "source": "https://auth0.com"
+    },
+    {
+      "vendor": "RD Station",
+      "domains": [
+        "rdstation.com"
+      ],
+      "hqCountry": "BR",
+      "euRegionAvailable": false,
+      "category": "crm",
+      "checkedOn": "2026-10-08",
+      "source": "https://www.rdstation.com"
+    },
+    {
+      "vendor": "Pagar.me",
+      "domains": [
+        "pagar.me"
+      ],
+      "hqCountry": "BR",
+      "euRegionAvailable": false,
+      "category": "payments",
+      "checkedOn": "2026-10-08",
+      "source": "https://pagar.me"
+    }
+  ]
+}

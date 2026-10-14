@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "scenario": "numbers-drift",
+  "description": "Narrative paragraphs whose numbers are absent from the facts; every section must render the placeholder with trace outcome numbers-drift.",
+  "promptHashes": {
+    "label-field.v1": "sha256:f579d6040c1b73d4bf0f5d81a499212861a288baf8dde2741fcc89f09893aa33",
+    "draft-narrative.v1": "sha256:9345516b24d1efd9481e4a5ab320c70f3afd57cf9cb7a1626560b310fc63fc6e"
+  },
+  "turns": [
+    {
+      "id": "classify-patient-obs",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Patient",
+        "field": "obs"
+      },
+      "output": {
+        "label": "special.health",
+        "confidence": 0.62,
+        "evidence": "obs Json?",
+        "rationale": "Free-form clinical observations next to diagnosis and allergies."
+      }
+    },
+    {
+      "id": "classify-appointment-extra",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Appointment",
+        "field": "extra"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.3,
+        "evidence": "extra Json?",
+        "rationale": "No neighbouring field suggests a category."
+      }
+    },
+    {
+      "id": "numbers-ropa-purposes",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "ropa",
+        "section": "purposes"
+      },
+      "output": {
+        "paragraphs": [
+          "The clinic processes records of 7 entities and 40 fields every day."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "numbers-ropa-security-measures",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "ropa",
+        "section": "security-measures"
+      },
+      "output": {
+        "paragraphs": [
+          "Security covers 12 servers and 99 backups across the platform."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "numbers-dpia-description",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "dpia",
+        "section": "description"
+      },
+      "output": {
+        "paragraphs": [
+          "The system serves 1500 patients through 8 integrations with vendors."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "numbers-dpia-necessity-proportionality",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "dpia",
+        "section": "necessity-proportionality"
+      },
+      "output": {
+        "paragraphs": [
+          "The necessity review found 17 purposes and 31 recipients in total."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "numbers-dpia-measures",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "dpia",
+        "section": "measures"
+      },
+      "output": {
+        "paragraphs": [
+          "Recommended measures address 21 risks found across 13 modules."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "numbers-registro-finalidades",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "registro",
+        "section": "finalidades"
+      },
+      "output": {
+        "paragraphs": [
+          "A clínica trata dados de 400 pacientes em 6 sistemas diferentes."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "numbers-registro-seguranca",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "registro",
+        "section": "seguranca"
+      },
+      "output": {
+        "paragraphs": [
+          "As medidas de segurança cobrem 27 servidores e 88 cópias de segurança."
+        ],
+        "citedFindingIds": []
+      }
+    },
+    {
+      "id": "numbers-ripd-medidas-salvaguardas",
+      "prompt": "draft-narrative.v1",
+      "when": {
+        "document": "ripd",
+        "section": "medidas-salvaguardas"
+      },
+      "output": {
+        "paragraphs": [
+          "As salvaguardas cobrem 64 campos sensíveis em 19 tabelas do sistema."
+        ],
+        "citedFindingIds": []
+      }
+    }
+  ]
+}

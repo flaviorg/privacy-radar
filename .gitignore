@@ -1,0 +1,5 @@
+node_modules/
+.env
+artifacts/
+coverage/
+privacy-radar-out/

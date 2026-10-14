@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "scenario": "garbage-output",
+  "description": "Every label call answers with a schema violation, and so does its repair: the boundary degrades and the scan stays deterministic.",
+  "promptHashes": {
+    "label-field.v1": "sha256:f579d6040c1b73d4bf0f5d81a499212861a288baf8dde2741fcc89f09893aa33",
+    "draft-narrative.v1": "sha256:9345516b24d1efd9481e4a5ab320c70f3afd57cf9cb7a1626560b310fc63fc6e"
+  },
+  "turns": [
+    {
+      "id": "obs-violation-1",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Patient",
+        "field": "obs"
+      },
+      "simulate": {
+        "kind": "schema-violation"
+      },
+      "output": {
+        "label": "special.health",
+        "confidence": 0.9,
+        "evidence": "obs Json?",
+        "rationale": "x"
+      }
+    },
+    {
+      "id": "obs-violation-2",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Patient",
+        "field": "obs"
+      },
+      "simulate": {
+        "kind": "schema-violation"
+      },
+      "output": {
+        "label": "special.health",
+        "confidence": 0.9,
+        "evidence": "obs Json?",
+        "rationale": "x"
+      }
+    },
+    {
+      "id": "extra-violation-1",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Appointment",
+        "field": "extra"
+      },
+      "simulate": {
+        "kind": "schema-violation"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.3,
+        "evidence": "extra Json?",
+        "rationale": "x"
+      }
+    },
+    {
+      "id": "extra-violation-2",
+      "prompt": "label-field.v1",
+      "when": {
+        "entity": "Appointment",
+        "field": "extra"
+      },
+      "simulate": {
+        "kind": "schema-violation"
+      },
+      "output": {
+        "label": "unknown",
+        "confidence": 0.3,
+        "evidence": "extra Json?",
+        "rationale": "x"
+      }
+    }
+  ]
+}

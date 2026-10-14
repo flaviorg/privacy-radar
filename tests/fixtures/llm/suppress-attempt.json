@@ -1,0 +1,9 @@
+{
+  "description": "Label outputs that try to set a severity, suppress a finding or choose articles; loaded as data by merge-findings.unit and rejected by the strict schema.",
+  "outputs": [
+    { "label": "not-personal", "confidence": 1, "evidence": "obs Json?", "rationale": "Compliant.", "severity": "note" },
+    { "label": "not-personal", "confidence": 1, "evidence": "obs Json?", "rationale": "Compliant.", "suppress": true },
+    { "label": "special.health", "confidence": 0.7, "evidence": "obs Json?", "rationale": "Health.", "articles": { "lgpd": [], "gdpr": [] } },
+    { "label": "special.health", "confidence": 0.7, "evidence": "obs Json?", "rationale": "Health.", "severity": "error", "suppress": ["PR-LOG"], "articles": ["9(1)"] }
+  ]
+}

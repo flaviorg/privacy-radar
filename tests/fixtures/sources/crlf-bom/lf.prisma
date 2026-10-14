@@ -1,0 +1,9 @@
+/// LF twin of crlf.prisma (that one has CRLF line endings and a BOM).
+model Patient {
+  id    String  @id
+  /// contact e-mail
+  email String  @unique
+  name  String? @default("Ana Example")
+
+  @@map("patients")
+}

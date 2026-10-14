@@ -1,0 +1,325 @@
+{
+  "regime": "gdpr",
+  "articles": [
+    {
+      "regime": "gdpr",
+      "article": "4(1)",
+      "title": "Personal data (definition)",
+      "summary": "Information relating to an identified or identifiable natural person, directly or through identifiers such as a name, identification number, location data or online identifier.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-4-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "4(5)",
+      "title": "Pseudonymisation",
+      "summary": "Processing so that data cannot be attributed to a person without additional information kept separately; pseudonymised data remain personal data.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-4-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "4(13)",
+      "title": "Genetic data",
+      "summary": "Personal data on the inherited or acquired genetic characteristics of a person that give unique information on their physiology or health.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-4-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "4(14)",
+      "title": "Biometric data",
+      "summary": "Personal data from technical processing of physical, physiological or behavioural characteristics that allow or confirm unique identification, such as facial images.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-4-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "4(15)",
+      "title": "Data concerning health",
+      "summary": "Personal data on a person's physical or mental health, including health care services, that reveal information about their health status.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-4-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "5(1)(b)",
+      "title": "Purpose limitation",
+      "summary": "Data are collected for specified, explicit and legitimate purposes and not further processed in a way that is incompatible with them.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-14",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-14; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "5(1)(c)",
+      "title": "Data minimisation",
+      "summary": "Data must be adequate, relevant and limited to what is necessary for the purposes of the processing.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "5(1)(e)",
+      "title": "Storage limitation",
+      "summary": "Data are kept in a form that identifies people for no longer than is necessary for the purposes.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "5(1)(f)",
+      "title": "Integrity and confidentiality",
+      "summary": "Data are processed with appropriate security, including protection against unauthorised or unlawful processing and against accidental loss, destruction or damage.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "5(2)",
+      "title": "Accountability",
+      "summary": "The controller is responsible for, and must be able to demonstrate, compliance with the principles of the first paragraph.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-5-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "6",
+      "title": "Lawfulness of processing",
+      "summary": "Processing is lawful only with a legal basis: consent, contract, legal obligation, vital interests, public task or legitimate interests.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-6-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "8",
+      "title": "Child's consent for information society services",
+      "summary": "Applies to consent-based information society services offered directly to a child; the consent age is 16 and member states may lower it to no less than 13.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-8-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "9(1)",
+      "title": "Special categories of data",
+      "summary": "Prohibits processing data revealing racial or ethnic origin, political, religious or philosophical beliefs, union membership, genetic or biometric data (for identification), health or sex life.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-9-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "9(2)",
+      "title": "Exceptions for special categories",
+      "summary": "Lists the conditions that lift the prohibition, such as explicit consent, employment law, vital interests, health care or public health, and research.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-9-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "10",
+      "title": "Criminal convictions and offences",
+      "summary": "Processing data on criminal convictions and offences is allowed only under official authority or when authorised by law with appropriate safeguards.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-10-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "25",
+      "title": "Data protection by design and by default",
+      "summary": "Controllers apply technical and organisational measures so that data protection principles are built in and only necessary data are processed by default.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-25-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "28",
+      "title": "Processor",
+      "summary": "Processing by a processor requires a binding contract with the required terms, and only processors that offer sufficient guarantees may be used.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-28-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "30(1)",
+      "title": "Records of processing activities (controller)",
+      "summary": "The controller records purposes, data categories, recipients, transfers, retention limits and security measures; retention and security items apply where possible.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-30-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "30(5)",
+      "title": "Exemption from the records duty",
+      "summary": "The records duty is waived for organisations under 250 employees, unless processing is not occasional, risks people's rights, or covers special categories or criminal data.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-30-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "32",
+      "title": "Security of processing",
+      "summary": "Controller and processor implement security measures appropriate to the risk, such as pseudonymisation, encryption, resilience and regular testing.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-32-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "33",
+      "title": "Breach notification to the authority",
+      "summary": "A personal data breach is notified to the supervisory authority within 72 hours, unless it is unlikely to result in a risk to people.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-33-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "35(1)",
+      "title": "Data protection impact assessment",
+      "summary": "A DPIA is carried out before processing that is likely to result in a high risk to rights and freedoms, especially with new technologies.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-35-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "35(7)",
+      "title": "Minimum content of a DPIA",
+      "summary": "A DPIA contains a description of the processing and its purposes, an assessment of necessity and proportionality, a risk assessment and the measures to address the risks.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-35-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "44",
+      "title": "General principle for transfers",
+      "summary": "Transfers to third countries are allowed only if the conditions of the transfer chapter are met, so that the level of protection is not undermined.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-44-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "45",
+      "title": "Transfers on the basis of an adequacy decision",
+      "summary": "A transfer may take place to a country, territory or sector that the Commission has found to ensure an adequate level of protection.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-45-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "46",
+      "title": "Transfers subject to appropriate safeguards",
+      "summary": "Without an adequacy decision, transfers need appropriate safeguards, such as standard contractual clauses or binding corporate rules, with enforceable rights.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-46-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "47",
+      "title": "Binding corporate rules",
+      "summary": "Supervisory authorities approve binding corporate rules for transfers within a group of undertakings when the requirements are met.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-47-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "49",
+      "title": "Derogations for specific situations",
+      "summary": "Specific situations allow transfers without adequacy or safeguards, such as explicit consent after being informed of the risks.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-49-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "83(4)",
+      "title": "Administrative fines, lower tier",
+      "summary": "Fines of up to EUR 10,000,000 or 2% of worldwide annual turnover for infringements of, among others, articles 8, 11, 25 to 39, 42 and 43.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-83-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "83(5)",
+      "title": "Administrative fines, upper tier",
+      "summary": "Fines of up to EUR 20,000,000 or 4% of worldwide annual turnover for infringements of articles 5, 6, 7 and 9, data subject rights and transfers (44 to 49).",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-08",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/art-83-gdpr/ on 2026-10-08; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "recital 38",
+      "title": "Specific protection of children",
+      "summary": "Children merit specific protection of their personal data, particularly for marketing, profiling and services offered directly to a child.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-14",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/recitals/no-38/ on 2026-10-14; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    },
+    {
+      "regime": "gdpr",
+      "article": "recital 75",
+      "title": "Risks to the rights and freedoms of people",
+      "summary": "Describes risks of varying likelihood and severity, including processing the personal data of vulnerable natural persons, in particular children.",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "verifiedOn": "2026-10-14",
+      "verifiedAgainst": "mirror:gdpr-info.eu",
+      "verificationNote": "Read on the unofficial mirror https://gdpr-info.eu/recitals/no-75/ on 2026-10-14; the official EUR-Lex text still needs the manual check described in docs/legal-sources.md."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "suppressions": [
+    { "fingerprint": "3f9a0c1e5b7d2a4c8e6f0b1d3a5c7e9f", "reason": "short", "by": "flavio" }
+  ]
+}

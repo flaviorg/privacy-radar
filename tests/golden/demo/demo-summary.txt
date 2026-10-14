@@ -1,0 +1,46 @@
+> PR mode on a two-commit copy \(base 3bd039e → head 7a374aa, 2 files changed\):
+>
+> + This PR introduces a new flow of identifier.cpf and special.health to analytics vendor Mixpanel
+>   \(US\) at src/analytics.ts:9 \(LGPD 6 I-III, 7, 11, 33, 46; GDPR 5\(1\)\(b\)\(c\), 6, 9\(1\),
+>   28, 44-46\).
+> + This PR introduces an international transfer of identifier.cpf and special.health to Mixpanel
+>   \(US\) at src/analytics.ts:9: LGPD needs-mechanism, GDPR conditional; status as of 2026-10-08;
+>   verify \(LGPD 33, 33 II, 33 VIII, 34-36; GDPR 44-47, 49\).
+> - This PR removes the flow of identifier.cpf to a file \(fs.appendFileSync\) at src/patients.ts:24
+>   \(LGPD 6 VII, 46; GDPR 5\(1\)\(f\), 32\).
+>
+> 2 added · 1 resolved · 15 unchanged · 2 new findings at or above "error" → PR check exit 1
+
+```text
+privacy-radar 0.1.0 · demo · provider: fake (scripted) · no network · regime: both
+clock 2026-10-08T12:00:00.000Z
+DRAFTS, NOT LEGAL ADVICE: findings and documents are starting points for a DPO review.
+
+target: fixtures/telehealth-clinic (8 files: 6 ts, 1 sql, 1 prisma)
+inventory: 3 entities · 24 fields · 14 personal (3 sensitive, 2 children indicators)
+           1 not personal (cnpj) · 2 below threshold · 2 ambiguous → LLM · 16 values masked
+
+top findings (articles on the second line: LGPD · GDPR)
+ error    PR-ANALYTICS           src/analytics.ts:9:3       cpf, health → mixpanel.track (US)
+          6 I-III, 7, 11, 33, 46 · 5(1)(b)(c), 6, 9(1), 28, 44-46
+ error    PR-TRANSFER            src/analytics.ts:9:3       Mixpanel (US): verify mechanism
+          33, 33 II, 33 VIII, 34-36 · 44-47, 49
+ error    PR-URL-QUERY           src/appointments.ts:11:62  nif-pt → query param "nif"
+          6 VII, 46 · 5(1)(f), 32
+ error    PR-LOG                 src/patients.ts:14:3       health + 10 more → console.info
+          6 VII, 11, 14, 46 · 5(1)(f), 8, 9(1), 32
+ error    PR-LOG                 src/patients.ts:22:3       cpf → logger.debug
+          6 VII, 46 · 5(1)(f), 32
+ warning  PR-HARDCODED-VALUE     migrations/001_init.sql:43:14 6 hardcoded values, masked
+          6 III, 6 VII, 46 · 5(1)(c)(f), 32
+ … 12 more in DEMO.md (11 deterministic, 1 LLM)
+ note     PR-AMBIGUOUS (LLM, scripted)  prisma/schema.prisma:17:3  Patient.obs → special.health 0.62
+
+summary: 5 error · 10 warning · 3 note (1 from the LLM) · 0 suppressed · 18 results
+llm: 2 fields labeled (1 unknown) · 8 narrative sections · 1 repair (simulated by the scripted fake)
+documents: ropa.md · dpia.md (2 of 9 WP248 criteria → likely required) · registro.pt-BR.md
+           ripd.pt-BR.md (3 high-risk indicators) · sarif: 18 results, 12 rules, fingerprints ok
+scan exit code 1 (errors found) · demo exit 0
+
+DRAFTS, NOT LEGAL ADVICE.
+```

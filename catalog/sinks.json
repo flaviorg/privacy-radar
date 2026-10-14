@@ -1,0 +1,50 @@
+{
+  "patterns": {
+    "log": [
+      "^console\\.(log|info|warn|error|debug|trace)$",
+      "^(logger|log|winston|pino|bunyan|req\\.log|this\\.logger)\\.(info|warn|error|debug|trace|log|fatal)$"
+    ],
+    "http": [
+      "^fetch$",
+      "^(axios|got|ky|superagent)(\\.(get|post|put|patch|delete|request))?$",
+      "^(http|https)\\.(request|get)$",
+      "^needle$"
+    ],
+    "analytics": [
+      "^(mixpanel|analytics|segment|amplitude|posthog|rudderanalytics|heap)\\.(track|identify|people\\.set|capture|logEvent|alias|group)$",
+      "^gtag$",
+      "^ga$",
+      "^fbq$",
+      "^Sentry\\.(captureMessage|setUser|setContext|captureException)$",
+      "^datadogRum\\.(setUser|addAction)$"
+    ],
+    "file": [
+      "^(fs|fsp|fs\\.promises)\\.(writeFile|writeFileSync|appendFile|appendFileSync|createWriteStream)$",
+      "^writeFile(Sync)?$",
+      "^appendFile(Sync)?$"
+    ],
+    "url-query": [
+      "^URLSearchParams$",
+      "^(?:.*\\.)?searchParams\\.(set|append)$"
+    ]
+  },
+  "inspect": {
+    "log": "all",
+    "http": "url+options",
+    "analytics": "all",
+    "file": "data",
+    "url-query": "interpolated"
+  },
+  "sdkVendors": {
+    "mixpanel": "Mixpanel",
+    "analytics": "Segment",
+    "segment": "Segment",
+    "amplitude": "Amplitude",
+    "posthog": "PostHog",
+    "gtag": "Google Analytics",
+    "ga": "Google Analytics",
+    "fbq": "Meta Pixel",
+    "Sentry": "Sentry",
+    "datadogRum": "Datadog"
+  }
+}
