@@ -30,6 +30,9 @@ jobs:
       - run: npm run check:secrets
       - run: npm run catalog:validate
       - run: npm run catalog:freshness
+      # setup-node restores ~/.npm (with the npx install of mermaid-cli) but not ~/.cache/puppeteer, where the postinstall of puppeteer
+      # puts the browser, so a cache hit would reuse mermaid-cli without a browser. Dropping the npx installs makes npx reinstall both.
+      - run: rm -rf ~/.npm/_npx
       - run: npm run diagrams:check
       - run: npm run eval:fake
 

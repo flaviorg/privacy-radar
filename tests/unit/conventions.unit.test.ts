@@ -297,6 +297,10 @@ test("CI runs typecheck, tests, check:secrets, catalog checks, diagrams and eval
   const order = ["npm ci", "npm run typecheck", "npm test", "npm run check:secrets", "npm run catalog:validate", "npm run catalog:freshness", "npm run diagrams:check", "npm run eval:fake"].map((c) => y.indexOf(`run: ${c}`));
   assert.ok(order.every((i) => i >= 0), `a step is missing: ${order}`);
   assert.deepEqual([...order].sort((a, b) => a - b), order, "steps run in the documented order");
+  // The restored npm cache keeps the npx install of mermaid-cli but not the browser puppeteer downloads into ~/.cache/puppeteer.
+  const dropNpx = y.indexOf("run: rm -rf ~/.npm/_npx");
+  assert.ok(dropNpx > y.indexOf("run: npm run catalog:freshness") && dropNpx < y.indexOf("run: npm run diagrams:check"), "the npx installs are removed right before diagrams:check");
+  assert.ok(!y.slice(dropNpx, y.indexOf("run: npm run diagrams:check")).includes("run: npm "), "no other npm step sits between the removal and diagrams:check");
   assert.ok(y.includes('PROPERTY_SEED: "20261008"'));
   assert.ok(y.includes("needs: verify"));
 });

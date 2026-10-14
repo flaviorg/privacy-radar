@@ -13,7 +13,7 @@ Run everything from the project root. The path may contain a space: quote it.
 - `npm run demo`: the one-command demo (fake provider, no key, no network).
 - `npm test`: unit and e2e tests with the network guard. `npm run test:unit` is what the hook runs.
 - `npm run typecheck`: `tsc --noEmit` (TypeScript 7.0.2, no build step; Node runs `.ts` directly).
-- `npm run verify`: typecheck, tests, `check:secrets`, `catalog:validate`, `catalog:freshness`, `diagrams:check`, `eval:fake` (what CI runs). `diagrams:check` is the only step that needs the network: it runs the pinned `@mermaid-js/mermaid-cli@12.0.0` through `npx`, which downloads it (and a headless Chrome) on the first run of a machine.
+- `npm run verify`: typecheck, tests, `check:secrets`, `catalog:validate`, `catalog:freshness`, `diagrams:check`, `eval:fake` (what CI runs). `diagrams:check` is the only step that needs the network: it runs the pinned `@mermaid-js/mermaid-cli@12.0.0` through `npx`, which downloads it (and a headless Chrome) on the first run of a machine. CI removes the restored `~/.npm/_npx` first, because the npm cache holds the npx install but not puppeteer's browser; a failed render prints the tail of the renderer's output.
 - `npm run regen`: rewrites the goldens, `DEMO.md` and the generated README blocks. Read the diff.
 - `npm run fixtures:rehash`: updates `promptHashes` in the fake fixtures after a prompt change.
 - `npm run eval:fake`: the labeling eval against its scripted fixture (proves the harness, not a model).
