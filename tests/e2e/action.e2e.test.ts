@@ -47,6 +47,26 @@ function runStepScript(yaml: string): string {
   return blocks[0]!;
 }
 
+/**
+ * `description:` values of one-line flow mappings (`key: { description: ..., default: ... }`) that are not a complete
+ * double-quoted string. In a flow mapping an unquoted comma ends the entry, so GitHub, which parses the manifest as YAML,
+ * reads `{ description: lgpd, gdpr or both }` as a `gdpr or both` key. Only text after a `key: {` is read, so `${{ ... }}`
+ * expressions and the shell of the `run:` block are ignored. No YAML dependency.
+ */
+function unquotedFlowDescriptions(yaml: string): { line: number; value: string }[] {
+  const bad: { line: number; value: string }[] = [];
+  yaml.split("\n").forEach((text, i) => {
+    const open = /^\s*(?:- )?[\w-]+:\s*\{/.exec(text);
+    if (!open) return;
+    const body = text.slice(open[0].length);
+    for (const m of body.matchAll(/(?:^|,)\s*description:\s*/g)) {
+      const value = body.slice(m.index + m[0].length);
+      if (!/^"(?:[^"\\]|\\.)*"\s*(?:,|\}|$)/.test(value)) bad.push({ line: i + 1, value: value.trim() });
+    }
+  });
+  return bad;
+}
+
 function runStep(env: Record<string, string>): { status: number | null; stdout: string; stderr: string } {
   const r = spawnSync("bash", ["-c", runStepScript(readRepoFile("action.yml"))], {
     encoding: "utf8",
@@ -74,6 +94,22 @@ test("[ACT-04] action.yml captures the exit code, declares comment-file and neve
   for (const s of ["|| code=$?", 'exit "$code"', "comment-file:", "exit-code:", "sarif-file:"]) assert.ok(y.includes(s), s);
   assert.doesNotMatch(runBlocks(y).join("\n"), /\$\{\{\s*inputs\./);
   for (const name of ["PATH", "REGIME", "FAIL_ON", "MIN_CONFIDENCE", "BASE"]) assert.match(y, new RegExp(`INPUT_${name}: \\$\\{\\{ inputs\\.`), name);
+});
+
+test("unquotedFlowDescriptions flags a description with commas in a flow mapping and accepts quoted ones", () => {
+  const broken = ["inputs:", "  regime: { description: lgpd, gdpr or both, default: both }", "  path: { description: Directory to scan, default: \".\" }"].join("\n");
+  assert.deepEqual(unquotedFlowDescriptions(broken), [
+    { line: 2, value: "lgpd, gdpr or both, default: both }" },
+    { line: 3, value: "Directory to scan, default: \".\" }" },
+  ]);
+  const fixed = ["inputs:", "  regime: { description: \"lgpd, gdpr or both\", default: both }", "  base: { description: \"Say \\\"x\\\", then y\" }", "  note: { default: \"${{ x }}\", description: \"a, b\" }", "description: Block scalar, commas are fine here"].join("\n");
+  assert.deepEqual(unquotedFlowDescriptions(fixed), []);
+});
+
+test("[ACT-01] every description inside a flow mapping of action.yml is a double-quoted string (GitHub parses the manifest as YAML)", () => {
+  const y = readRepoFile("action.yml");
+  assert.ok(/\{[^{}\n]*\bdescription:/.test(y), "the inputs and outputs are declared as flow mappings with a description");
+  assert.deepEqual(unquotedFlowDescriptions(y), []);
 });
 
 test("[ACT-03] docs/github-action.md has the upload-sarif@v4 workflow with security-events: write", () => {

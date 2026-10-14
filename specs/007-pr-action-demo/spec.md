@@ -45,7 +45,7 @@ The repository process is part of the product: `AGENTS.md`, a pre-commit hook, `
 - **PR verdict (Spec delta 11).** The `pr` exit code counts added non-suppressed deterministic findings at or above `--fail-on`; both revisions are scanned with the base revision's `privacy-radar.config.json` when present (changed in the final review: scanning each revision with its own config let a pull request suppress its own findings); a PR that changes the config says so in the comment.
 - **Review focus 4.** Refs such as `origin/main`, `feature/x` and a 40-character SHA are accepted; only a leading `-` or a non-commit is rejected, before any other Git call.
 - **Step 0 Git results.** `git diff -z --name-only` prints non-ASCII paths unquoted; `GIT_INDEX_FILE=<tmp>/index git read-tree` plus `git checkout-index -a --prefix=` writes a tree without touching the repository index; two hermetic commit runs give the same SHA. See `docs/api-notes.md`.
-- **CI (ACT-01).** The `self-action` job runs only on GitHub after publication; its local proof is `tests/e2e/action.e2e.test.ts`, and the static test in `conventions.unit` checks the workflow file.
+- **CI (ACT-01).** The `self-action` job runs only on GitHub, on every push and pull request; its local proof is `tests/e2e/action.e2e.test.ts`, and the static test in `conventions.unit` checks the workflow file. The local run of the step never parses `action.yml` as GitHub does, so a static check in the same e2e file requires every `description` inside a flow mapping to be a double-quoted string (an unquoted comma splits the entry and GitHub rejects the manifest).
 
 ## Checklist
 

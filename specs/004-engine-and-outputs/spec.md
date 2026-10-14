@@ -46,7 +46,7 @@ Everything is deterministic, masked and ordered stably; the exit code depends on
 - **Small modules the spec implies (Spec delta 10).** `src/engine/model.ts`, `masked-source.ts`, `articles.ts`, `messages.ts`, `src/infra/clock.ts`, `src/output/summary.ts` and `disclaimer.ts` exist as separate files with single responsibilities.
 - **Disclaimer constants (Spec delta 13).** `DISCLAIMER_EN` and `DISCLAIMER_PT_BR` are exported by `src/output/disclaimer.ts`; the console table, SARIF `fullDescription`/`help.markdown` and the PR comment footer contain `DISCLAIMER_EN`, asserted on rendered output.
 - **Transfer severity.** Under `--regime both` the severity matrix uses the worst transfer status across the regimes; a GB vendor is `needs-mechanism` under LGPD and `adequate` under GDPR, so `--regime gdpr` alone is lower for the same sink.
-- **SARIF (D-15).** A hand-written Zod subset covers what GitHub requires; the CI `self-action` job is the integration check (it runs on GitHub after publication; its local proof is `tests/e2e/action.e2e.test.ts` plus `catalog --validate-sarif`).
+- **SARIF (D-15).** A hand-written Zod subset covers what GitHub requires; the CI `self-action` job is the integration check (it runs on GitHub on every push and pull request; its local proof is `tests/e2e/action.e2e.test.ts` plus `catalog --validate-sarif`).
 - **Zod strict objects (Step 0).** `z.looseObject` and exact-length arrays are enough for the SARIF subset; problem lines carry `issue.code` and `issue.path` and never echo a value.
 
 ## Checklist

@@ -1,15 +1,15 @@
 name: privacy-radar
 description: Personal-data scanner for LGPD and GDPR (drafts, not legal advice)
 inputs:
-  path:           { description: Directory to scan, default: "." }
-  regime:         { description: lgpd, gdpr or both, default: both }
-  fail-on:        { description: error, warning, note or none, default: error }
-  min-confidence: { description: 0 to 1, default: "0.5" }
-  base:           { description: Base ref for PR mode (empty = full scan), default: "" }
+  path:           { description: "Directory to scan", default: "." }
+  regime:         { description: "lgpd, gdpr or both", default: both }
+  fail-on:        { description: "error, warning, note or none", default: error }
+  min-confidence: { description: "0 to 1", default: "0.5" }
+  base:           { description: "Base ref for PR mode (empty = full scan)", default: "" }
 outputs:
-  sarif-file:   { description: Path of findings.sarif, value: "${{ steps.run.outputs.sarif }}" }
-  comment-file: { description: Path of pr-comment.md (PR mode only; empty otherwise), value: "${{ steps.run.outputs.comment }}" }
-  exit-code:    { description: Exit code of the CLI (0 clean, 1 findings at or above fail-on), value: "${{ steps.run.outputs.code }}" }
+  sarif-file:   { description: "Path of findings.sarif", value: "${{ steps.run.outputs.sarif }}" }
+  comment-file: { description: "Path of pr-comment.md (PR mode only; empty otherwise)", value: "${{ steps.run.outputs.comment }}" }
+  exit-code:    { description: "Exit code of the CLI (0 clean, 1 findings at or above fail-on)", value: "${{ steps.run.outputs.code }}" }
 runs:
   using: composite
   steps:

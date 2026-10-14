@@ -2,6 +2,8 @@
 
 Scans a Node/TypeScript repository for a personal-data inventory and risky flows, maps every finding to exact LGPD and GDPR articles, drafts the RoPA, DPIA, registro and RIPD documents and explains pull requests as compliance sentences.
 
+[![CI](https://github.com/flaviorg/privacy-radar/actions/workflows/ci.yml/badge.svg)](https://github.com/flaviorg/privacy-radar/actions/workflows/ci.yml)
+
 **MIT** · **Node 24.21** · **drafts, not legal advice**
 
 This repository shows what AI engineering looks like when the model is the least trusted component: a hard boundary, a property-tested merge, injection fixtures, a measured deterministic classifier, an offline eval harness and a live eval you can run with one key. Start with [`tests/unit/merge-findings.unit.test.ts`](tests/unit/merge-findings.unit.test.ts) and [`tests/e2e/injection.e2e.test.ts`](tests/e2e/injection.e2e.test.ts).
@@ -364,7 +366,7 @@ Sources and dates are in [docs/comparison.md](docs/comparison.md). Presidio is c
 - Field names are classified in pt, en and es; identifier names such as `steuer_id` or `bsn` work in any language, but other German, French or Italian field names are not classified by name.
 - Children's data is an indicator, never a conclusion. There is no runtime data.
 - The DPIA counts only the WP248 criteria that can be detected from code (a sensitive category, vulnerable subjects, an LLM vendor reached): "2 of 9 detected: a DPIA is likely required" in the demo. Third-party sharing is listed as another risk indicator, outside the count.
-- Legal status is dated and must be verified. Developed and tested on Node 24.21 and macOS; the CI workflow targets Ubuntu and runs after publication.
+- Legal status is dated and must be verified. Developed and tested on Node 24.21 and macOS; the CI workflow runs on `ubuntu-latest` on every push and pull request.
 
 ## Tests and process
 
